@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="am">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Admin Panel | መርካቶ Marketplace</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Ethiopic:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --g:#1a7a4a;--gd:#145e38;--gl:#22a05e;
+  --gold:#f5a623;--goldd:#d4891a;--red:#e63946;
+  --bg:#f0f2f5;--w:#fff;
+  --g50:#f9fafb;--g100:#f3f4f6;--g200:#e5e7eb;--g300:#d1d5db;
+  --g400:#9ca3af;--g500:#6b7280;--g600:#4b5563;--g700:#374151;
+  --g800:#1f2937;--g900:#111827;
+  --sh:0 1px 3px rgba(0,0,0,.1);--shl:0 4px 16px rgba(0,0,0,.12);
+  --r:12px;--rsm:8px;--tr:all .2s ease;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter','Noto Sans Ethiopic',sans-serif;background:var(--bg);color:var(--g800);line-height:1.5;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+button{cursor:pointer;border:none;outline:none;font-family:inherit}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--g100)}::-webkit-scrollbar-thumb{background:var(--g);border-radius:3px}
+.admin-layout{display:flex;min-height:100vh}
+.admin-sidebar{width:260px;background:var(--g900);color:#fff;display:flex;flex-direction:column;position:fixed;top:0;left:0;height:100vh;z-index:100;transition:var(--tr);overflow-y:auto}
+.sidebar-header{padding:20px 16px;border-bottom:1px solid rgba(255,255,255,.08);display:flex;align-items:center;gap:12px;flex-shrink:0}
+.sidebar-logo{width:40px;height:40px;background:linear-gradient(135deg,var(--g),var(--gl));border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}
+.sidebar-title{font-size:.95rem;font-weight:800;color:#fff}
+.sidebar-subtitle{font-size:.68rem;color:rgba(255,255,255,.5);margin-top:1px}
+.sidebar-nav{flex:1;padding:12px 8px}
+.nav-section{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.35);padding:12px 10px 6px}
+.nav-item{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:var(--rsm);color:rgba(255,255,255,.65);transition:var(--tr);cursor:pointer;margin-bottom:2px}
+.nav-item:hover{background:rgba(255,255,255,.08);color:#fff}
+.nav-item.active{background:var(--g);color:#fff}
+.nav-item i{font-size:.95rem;width:18px;text-align:center;flex-shrink:0}
+.nav-item .nav-label{font-size:.85rem;font-weight:500}
+.nav-item .nav-badge{margin-left:auto;background:var(--red);color:#fff;font-size:.65rem;font-weight:700;padding:2px 7px;border-radius:50px}
+.sidebar-footer{padding:12px 8px;border-top:1px solid rgba(255,255,255,.08);flex-shrink:0}
+.admin-main{margin-left:260px;flex:1;display:flex;flex-direction:column;min-height:100vh}
+.admin-topbar{background:var(--w);border-bottom:1px solid var(--g200);padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50;box-shadow:var(--sh)}
+.topbar-left{display:flex;align-items:center;gap:12px}
+.topbar-title{font-size:1rem;font-weight:700;color:var(--g900)}
+.topbar-right{display:flex;align-items:center;gap:12px}
+.topbar-btn{width:36px;height:36px;border-radius:var(--rsm);background:var(--g50);border:1px solid var(--g200);display:flex;align-items:center;justify-content:center;font-size:.9rem;color:var(--g600);cursor:pointer;transition:var(--tr);position:relative}
+.topbar-btn:hover{background:var(--g100);color:var(--g)}
+.notif-dot{position:absolute;top:6px;right:6px;width:8px;height:8px;background:var(--red);border-radius:50%;border:2px solid var(--w)}
+.admin-avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--g),var(--gl));display:flex;align-items:center;justify-content:center;font-size:.85rem;color:#fff;font-weight:700;cursor:pointer}
+.search-bar{display:flex;align-items:center;gap:8px;background:var(--g50);border:1px solid var(--g200);border-radius:50px;padding:6px 14px}
+.search-bar input{border:none;background:transparent;outline:none;font-family:inherit;font-size:.85rem;color:var(--g800);width:200px}
+.search-bar input::placeholder{color:var(--g400)}
+.admin-content{padding:24px;flex:1}
+.stat-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;margin-bottom:24px}
+.stat-card{background:var(--w);border-radius:var(--r);padding:20px;box-shadow:var(--sh);border:1px solid var(--g200);display:flex;align-items:center;gap:16px;transition:var(--tr)}
+.stat-card:hover{box-shadow:var(--shl);transform:translateY(-2px)}
+.stat-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0}
+.stat-icon.green{background:rgba(26,122,74,.12);color:var(--g)}
+.stat-icon.gold{background:rgba(245,166,35,.12);color:var(--goldd)}
+.stat-icon.blue{background:rgba(59,130,246,.12);color:#3b82f6}
+.stat-icon.red{background:rgba(230,57,70,.12);color:var(--red)}
+.stat-icon.purple{background:rgba(139,92,246,.12);color:#8b5cf6}
+.stat-num{font-size:1.6rem;font-weight:900;color:var(--g900)}
+.stat-label{font-size:.78rem;color:var(--g500);margin-top:2px}
+.stat-change{font-size:.72rem;font-weight:600;margin-top:4px}
+.stat-change.up{color:var(--g)}.stat-change.down{color:var(--red)}
+.admin-card{background:var(--w);border-radius:var(--r);box-shadow:var(--sh);border:1px solid var(--g200);margin-bottom:20px;overflow:hidden}
+.admin-card-header{padding:16px 20px;border-bottom:1px solid var(--g100);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.admin-card-title{font-size:.95rem;font-weight:800;color:var(--g900);display:flex;align-items:center;gap:8px}
+.admin-card-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.filter-btn{padding:6px 14px;border-radius:50px;font-size:.78rem;font-weight:600;border:2px solid var(--g200);background:transparent;color:var(--g600);cursor:pointer;transition:var(--tr)}
+.filter-btn:hover,.filter-btn.active{border-color:var(--g);color:var(--g);background:rgba(26,122,74,.06)}
+.search-input{border:2px solid var(--g200);border-radius:50px;padding:6px 14px;font-size:.82rem;font-family:inherit;color:var(--g800);outline:none;transition:var(--tr);width:180px}
+.search-input:focus{border-color:var(--g)}
+.admin-table{width:100%;border-collapse:collapse}
+.admin-table th{background:var(--g50);padding:10px 16px;text-align:left;font-size:.75rem;font-weight:700;color:var(--g500);text-transform:uppercase;letter-spacing:.5px;border-bottom:1px solid var(--g200)}
+.admin-table td{padding:12px 16px;border-bottom:1px solid var(--g100);font-size:.85rem;color:var(--g700);vertical-align:middle}
+.admin-table tr:last-child td{border-bottom:none}
+.admin-table tr:hover td{background:var(--g50)}
+.user-cell{display:flex;align-items:center;gap:10px}
+.user-av{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--g),var(--gl));display:flex;align-items:center;justify-content:center;font-size:.8rem;color:#fff;font-weight:700;flex-shrink:0}
+.user-name{font-weight:600;color:var(--g900)}
+.user-phone{font-size:.75rem;color:var(--g400)}
+.badge2{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:50px;font-size:.72rem;font-weight:700}
+.badge2-green{background:rgba(26,122,74,.1);color:var(--g)}
+.badge2-gold{background:rgba(245,166,35,.1);color:var(--goldd)}
+.badge2-blue{background:rgba(59,130,246,.1);color:#3b82f6}
+.badge2-red{background:rgba(230,57,70,.1);color:var(--red)}
+.badge2-gray{background:var(--g100);color:var(--g500)}
+.badge2-purple{background:rgba(139,92,246,.1);color:#8b5cf6}
+.action-btn{width:30px;height:30px;border-radius:var(--rsm);display:flex;align-items:center;justify-content:center;font-size:.8rem;cursor:pointer;transition:var(--tr);border:none}
+.action-btn-edit{background:rgba(59,130,246,.1);color:#3b82f6}.action-btn-edit:hover{background:#3b82f6;color:#fff}
+.action-btn-del{background:rgba(230,57,70,.1);color:var(--red)}.action-btn-del:hover{background:var(--red);color:#fff}
+.action-btn-key{background:rgba(245,166,35,.1);color:var(--goldd)}.action-btn-key:hover{background:var(--gold);color:#fff}
+.action-btn-view{background:rgba(26,122,74,.1);color:var(--g)}.action-btn-view:hover{background:var(--g);color:#fff}
+.action-btns{display:flex;gap:5px}
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:2000;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:var(--tr)}
+.modal-overlay.open{opacity:1;pointer-events:all}
+.modal{background:var(--w);border-radius:16px;padding:28px;max-width:480px;width:100%;position:relative;transform:translateY(20px);transition:var(--tr)}
+.modal-overlay.open .modal{transform:translateY(0)}
+.modal-close{position:absolute;top:14px;right:14px;width:28px;height:28px;border-radius:50%;background:var(--g100);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:.8rem;color:var(--g600);border:none}
+.modal-close:hover{background:var(--g200)}
+.modal h2{font-size:1.1rem;font-weight:800;color:var(--g900);margin-bottom:4px}
+.modal p{font-size:.85rem;color:var(--g500);margin-bottom:18px}
+.fg{margin-bottom:14px}
+.fg label{display:block;font-size:.8rem;font-weight:600;color:var(--g700);margin-bottom:5px}
+.fi{width:100%;border:2px solid var(--g200);border-radius:var(--rsm);padding:10px 13px;font-size:.88rem;font-family:inherit;color:var(--g800);outline:none;transition:var(--tr)}
+.fi:focus{border-color:var(--g);box-shadow:0 0 0 3px rgba(26,122,74,.1)}
+.fi-sel{width:100%;border:2px solid var(--g200);border-radius:var(--rsm);padding:10px 13px;font-size:.88rem;font-family:inherit;color:var(--g800);outline:none;cursor:pointer}
+.fi-sel:focus{border-color:var(--g)}
+.btn-modal{width:100%;padding:11px;border-radius:var(--rsm);font-size:.9rem;font-weight:700;font-family:inherit;cursor:pointer;transition:var(--tr);border:none}
+.btn-modal-primary{background:var(--g);color:#fff}.btn-modal-primary:hover{background:var(--gd)}
+.btn-modal-danger{background:var(--red);color:#fff}.btn-modal-danger:hover{background:#c62828}
+.btn-modal-secondary{background:var(--g100);color:var(--g700)}.btn-modal-secondary:hover{background:var(--g200)}
+.toast{position:fixed;bottom:20px;right:20px;background:var(--g900);color:#fff;padding:12px 18px;border-radius:var(--r);font-size:.84rem;font-weight:500;z-index:3000;transform:translateX(120%);transition:var(--tr);max-width:300px}
+.toast.show{transform:translateX(0)}.toast.success{background:var(--g)}.toast.error{background:var(--red)}.toast.warning{background:var(--goldd)}
+.pagination{display:flex;align-items:center;justify-content:space-between;padding:12px 20px;border-top:1px solid var(--g100)}
+.pag-info{font-size:.8rem;color:var(--g500)}
+.pag-btns{display:flex;gap:4px}
+.pag-btn{width:32px;height:32px;border-radius:var(--rsm);display:flex;align-items:center;justify-content:center;font-size:.82rem;font-weight:600;color:var(--g700);background:var(--w);border:1px solid var(--g200);cursor:pointer;transition:var(--tr)}
+.pag-btn:hover,.pag-btn.active{background:var(--g);color:#fff;border-color:var(--g)}
+.login-screen{position:fixed;inset:0;background:linear-gradient(135deg,#0d4a2a,#1a7a4a);display:flex;align-items:center;justify-content:center;z-index:9999}
+.login-box{background:var(--w);border-radius:20px;padding:40px;width:100%;max-width:400px;box-shadow:0 20px 60px rgba(0,0,0,.3)}
+.login-logo{text-align:center;margin-bottom:24px}
+.login-logo .icon{width:64px;height:64px;background:linear-gradient(135deg,var(--g),var(--gl));border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:2rem;margin:0 auto 12px}
+.login-logo h1{font-size:1.3rem;font-weight:900;color:var(--g900)}
+.login-logo p{font-size:.85rem;color:var(--g500);margin-top:4px}
+@media(max-width:1024px){.admin-sidebar{width:70px}.admin-sidebar .sidebar-title,.admin-sidebar .sidebar-subtitle,.admin-sidebar .nav-label,.admin-sidebar .nav-badge,.admin-sidebar .nav-section{display:none}.admin-main{margin-left:70px}}
+@media(max-width:768px){.admin-sidebar{transform:translateX(-100%);width:260px}.admin-sidebar.open{transform:translateX(0)}.admin-sidebar.open .sidebar-title,.admin-sidebar.open .sidebar-subtitle,.admin-sidebar.open .nav-label,.admin-sidebar.open .nav-badge,.admin-sidebar.open .nav-section{display:block}.admin-main{margin-left:0}.search-bar{display:none}}
+</style>
+</head>
+<body>
+
+<!-- LOGIN SCREEN -->
+<div class="login-screen" id="login-screen">
+  <div class="login-box">
+    <div class="login-logo">
+      <div class="icon">🏪</div>
+      <h1>መርካቶ Admin</h1>
+      <p>Administrator Panel — ለAdmin ብቻ</p>
+    </div>
+    <div class="fg"><label>Admin Username</label><input class="fi" type="text" id="admin-user" placeholder="Emilia" value="Emilia" value="Emilia"/></div>
+    <div class="fg"><label>Password</label><input class="fi" type="password" id="admin-pass" placeholder="••••••••" value="Emilia-2019" onkeydown="if(event.key==='Enter')doLogin()"/></div>
+    <button class="btn-modal btn-modal-primary" onclick="doLogin()" style="margin-top:4px"><i class="fas fa-sign-in-alt"></i> ግባ / Login</button>
+    <p style="text-align:center;font-size:.75rem;color:var(--g400);margin-top:12px">Login: Emilia / Emilia-2019</p>
+    <p style="text-align:center;font-size:.75rem;margin-top:8px"><a href="index.html" style="color:var(--g)">← ወደ ድረ-ገጽ ተመለስ</a></p>
+  </div>
+</div>
+
+<div class="admin-layout" id="admin-app" style="display:none">
+  <!-- SIDEBAR -->
+  <aside class="admin-sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logo">🏪</div>
+      <div>
+        <div class="sidebar-title">መርካቶ Admin</div>
+        <div class="sidebar-subtitle">Administrator Panel</div>
+      </div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-section">ዋና / Main</div>
+      <div class="nav-item active" onclick="showSection('dashboard',this)"><i class="fas fa-tachometer-alt"></i><span class="nav-label">Dashboard</span></div>
+      <div class="nav-item" onclick="showSection('users',this)"><i class="fas fa-users"></i><span class="nav-label">ተጠቃሚዎች / Users</span><span class="nav-badge">8</span></div>
+      <div class="nav-item" onclick="showSection('ads',this)"><i class="fas fa-bullhorn"></i><span class="nav-label">ማስታወቂያዎች / Ads</span></div>
+      <div class="nav-item" onclick="showSection('payments',this)"><i class="fas fa-credit-card"></i><span class="nav-label">ክፍያዎች / Payments</span></div>
+      <div class="nav-section">ደህንነት / Security</div>
+      <div class="nav-item" onclick="showSection('verified',this)"><i class="fas fa-shield-alt"></i><span class="nav-label">Verified Users</span></div>
+      <div class="nav-item" onclick="showSection('fraud',this)"><i class="fas fa-flag"></i><span class="nav-label">Fraud Reports</span><span class="nav-badge">2</span></div>
+      <div class="nav-section">ስርዓት / System</div>
+      <div class="nav-item" onclick="showSection('settings',this)"><i class="fas fa-cog"></i><span class="nav-label">Settings</span></div>
+      <div class="nav-item" onclick="window.location.href='index.html'"><i class="fas fa-external-link-alt"></i><span class="nav-label">ድረ-ገጽ ይመልከቱ</span></div>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="nav-item" onclick="adminLogout()"><i class="fas fa-sign-out-alt"></i><span class="nav-label">ውጣ / Logout</span></div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="admin-main">
+    <div class="admin-topbar">
+      <div class="topbar-left">
+        <button class="topbar-btn" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
+        <div class="topbar-title" id="page-title">Dashboard</div>
+      </div>
+      <div class="topbar-right">
+        <div class="search-bar">
+          <i class="fas fa-search" style="color:var(--g400)"></i>
+          <input type="text" placeholder="ፈልግ / Search..." oninput="searchUsers(this.value)"/>
+        </div>
+        <div class="topbar-btn" onclick="showToast('2 አዲስ ማሳወቂያዎች','success')">
+          <i class="fas fa-bell"></i><span class="notif-dot"></span>
+        </div>
+        <div class="topbar-btn" onclick="showSection('settings',null)"><i class="fas fa-cog"></i></div>
+        <div class="admin-avatar" title="Admin">A</div>
+      </div>
+    </div>
+
+    <div class="admin-content">
+
+      <!-- DASHBOARD -->
+      <div id="section-dashboard">
+        <div style="margin-bottom:20px">
+          <h1 style="font-size:1.3rem;font-weight:900;color:var(--g900)">Dashboard</h1>
+          <p style="font-size:.85rem;color:var(--g500);margin-top:2px">ዛሬ: <span id="today-date"></span></p>
+        </div>
+        <div class="stat-cards">
+          <div class="stat-card"><div class="stat-icon green"><i class="fas fa-users"></i></div><div><div class="stat-num">8</div><div class="stat-label">ጠቅላላ ተጠቃሚዎች</div><div class="stat-change up">↑ +2 ዛሬ</div></div></div>
+          <div class="stat-card"><div class="stat-icon gold"><i class="fas fa-star"></i></div><div><div class="stat-num">6</div><div class="stat-label">Premium አባላት</div><div class="stat-change up">↑ +1 ዛሬ</div></div></div>
+          <div class="stat-card"><div class="stat-icon purple"><i class="fas fa-building"></i></div><div><div class="stat-num">2</div><div class="stat-label">Business አባላት</div><div class="stat-change up">↑ 0 ዛሬ</div></div></div>
+          <div class="stat-card"><div class="stat-icon blue"><i class="fas fa-bullhorn"></i></div><div><div class="stat-num">242</div><div class="stat-label">ንቁ ማስታወቂያዎች</div><div class="stat-change up">↑ +18 ዛሬ</div></div></div>
+          <div class="stat-card"><div class="stat-icon green"><i class="fas fa-money-bill-wave"></i></div><div><div class="stat-num">14,200</div><div class="stat-label">ወርሃዊ ገቢ (ETB)</div><div class="stat-change up">↑ +2,400</div></div></div>
+          <div class="stat-card"><div class="stat-icon red"><i class="fas fa-flag"></i></div><div><div class="stat-num">2</div><div class="stat-label">Fraud Reports</div><div class="stat-change down">↓ ትኩረት ያስፈልጋል</div></div></div>
+        </div>
+        <div class="admin-card">
+          <div class="admin-card-header">
+            <div class="admin-card-title"><i class="fas fa-users" style="color:var(--g)"></i> አዲስ ተጠቃሚዎች</div>
+            <button class="filter-btn active" onclick="showSection('users',null)">ሁሉንም ይመልከቱ →</button>
+          </div>
+          <table class="admin-table">
+            <thead><tr><th>ስም</th><th>ፕላን</th><th>ሁኔታ</th><th>ተቀላቀሉ</th></tr></thead>
+            <tbody id="dash-users"></tbody>
+          </table>
+        </div>
+        <div class="admin-card">
+          <div class="admin-card-header"><div class="admin-card-title"><i class="fas fa-chart-bar" style="color:var(--g)"></i> ወርሃዊ ገቢ (ETB)</div></div>
+          <div style="padding:20px">
+            <div style="display:flex;align-items:flex-end;gap:8px;height:120px;margin-bottom:8px" id="revenue-chart"></div>
+            <div style="display:flex;gap:8px" id="revenue-labels"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- USERS -->
+      <div id="section-users" style="display:none">
+        <div style="margin-bottom:20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px">
+          <div><h1 style="font-size:1.3rem;font-weight:900;color:var(--g900)">ተጠቃሚዎች / Users</h1><p style="font-size:.85rem;color:var(--g500);margin-top:2px">ሁሉም ተመዝጋቢ ተጠቃሚዎች</p></div>
+          <button class="filter-btn" style="background:var(--g);color:#fff;border-color:var(--g)" onclick="showToast('አዲስ ተጠቃሚ ማከያ ✅','success')"><i class="fas fa-plus"></i> አዲስ ተጠቃሚ</button>
+        </div>
+        <div class="admin-card">
+          <div class="admin-card-header">
+            <div class="admin-card-title"><i class="fas fa-users" style="color:var(--g)"></i> ሁሉም ተጠቃሚዎች (<span id="user-count">8</span>)</div>
+            <div class="admin-card-actions">
+              <button class="filter-btn active" onclick="filterUsers('all',this)">ሁሉም</button>
+              <button class="filter-btn" onclick="filterUsers('premium',this)">⭐ Premium</button>
+              <button class="filter-btn" onclick="filterUsers('business',this)">🏢 Business</button>
+              <button class="filter-btn" onclick="filterUsers('active',this)">Active</button>
+              <button class="filter-btn" onclick="filterUsers('suspended',this)">Suspended</button>
+              <input class="search-input" type="text" placeholder="ፈልግ..." oninput="searchUsers(this.value)"/>
+            </div>
+          </div>
+          <div style="overflow-x:auto">
+            <table class="admin-table">
+              <thead><tr><th>ስም / Name</th><th>ኢሜይል</th><th>ፕላን</th><th>Verified</th><th>ሁኔታ</th><th>ማስታወቂያዎች</th><th>ተቀላቀሉ</th><th>ድርጊቶች</th></tr></thead>
+              <tbody id="users-tbody"></tbody>
+            </table>
+          </div>
+          <div class="pagination">
+            <div class="pag-info" id="pag-info">1-8 ከ 8 ተጠቃሚዎች</div>
+            <div class="pag-btns"><div class="pag-btn"><i class="fas fa-chevron-left"></i></div><div class="pag-btn active">1</div><div class="pag-btn"><i class="fas fa-chevron-right"></i></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ADS -->
+      <div id="section-ads" style="display:none">
+        <div style="margin-bottom:20px"><h1 style="font-size:1.3rem;font-weight:900;color:var(--g900)">ማስታወቂያዎች / Ads</h1></div>
+        <div class="admin-card">
+          <div class="admin-card-header"><div class="admin-card-title"><i class="fas fa-bullhorn" style="color:var(--g)"></i> ማስታወቂያዎች (242)</div></div>
+          <table class="admin-table">
+            <thead><tr><th>ርዕስ</th><th>ሻጭ</th><th>ካታጎሪ</th><th>ዋጋ</th><th>ሁኔታ</th><th>ቀን</th><th>ድርጊቶች</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Samsung Galaxy S24 Ultra</strong></td><td>ሀይሉ ቴክ</td><td><span class="badge2 badge2-blue">📱 Electronics</span></td><td>85,000 ETB</td><td><span class="badge2 badge2-green">Active</span></td><td>2024-04-10</td><td><div class="action-btns"><button class="action-btn action-btn-view" onclick="showToast('ማስታወቂያ ዝርዝር ✅','success')"><i class="fas fa-eye"></i></button><button class="action-btn action-btn-del" onclick="showToast('ማስታወቂያ ተሰርዟል','error')"><i class="fas fa-trash"></i></button></div></td></tr>
+              <tr><td><strong>Toyota Land Cruiser 2020</strong></td><td>ብርሃን ሞተርስ</td><td><span class="badge2 badge2-red">🚗 Vehicles</span></td><td>4,200,000 ETB</td><td><span class="badge2 badge2-green">Active</span></td><td>2024-04-08</td><td><div class="action-btns"><button class="action-btn action-btn-view" onclick="showToast('ማስታወቂያ ዝርዝር ✅','success')"><i class="fas fa-eye"></i></button><button class="action-btn action-btn-del" onclick="showToast('ማስታወቂያ ተሰርዟል','error')"><i class="fas fa-trash"></i></button></div></td></tr>
+              <tr><td><strong>3 ክፍል ቤት ኪራይ — ቦሌ</strong></td><td>ሰሎሞን ሪልቲ</td><td><span class="badge2 badge2-green">🏡 Real Estate</span></td><td>25,000 ETB/ወር</td><td><span class="badge2 badge2-green">Active</span></td><td>2024-04-05</td><td><div class="action-btns"><button class="action-btn action-btn-view" onclick="showToast('ማስታወቂያ ዝርዝር ✅','success')"><i class="fas fa-eye"></i></button><button class="action-btn action-btn-del" onclick="showToast('ማስታወቂያ ተሰርዟል','error')"><i class="fas fa-trash"></i></button></div></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- PAYMENTS -->
+      <div id="section-payments" style="display:none">
+        <div style="margin-bottom:20px"><h1 style="font-size:1.3rem;font-weight:900;color:var(--g900)">ክፍያዎች / Payments</h1></div>
+        <div class="admin-card">
+          <div class="admin-card-header"><div class="admin-card-title"><i class="fas fa-credit-card" style="color:var(--g)"></i> ክፍያ ታሪክ</div></div>
+          <table class="admin-table">
+            <thead><tr><th>ተጠቃሚ</th><th>ፕላን</th><th>መጠን</th><th>ዘዴ</th><th>ሁኔታ</th><th>ቀን</th></tr></thead>
+            <tbody>
+              <tr><td><div class="user-cell"><div class="user-av">ሀ</div><div><div class="user-name">ሀይሉ ተስፋዬ</div></div></div></td><td><span class="badge2 badge2-green">⭐ Premium Yearly</span></td><td><strong>1,000 ETB</strong></td><td>📱 Telebirr</td><td><span class="badge2 badge2-green">✅ Paid</span></td><td>2024-01-15</td></tr>
+              <tr><td><div class="user-cell"><div class="user-av">ብ</div><div><div class="user-name">ብርሃን አለሙ</div></div></div></td><td><span class="badge2 badge2-gold">🏢 Business Monthly</span></td><td><strong>500 ETB</strong></td><td>🏦 CBE Birr</td><td><span class="badge2 badge2-green">✅ Paid</span></td><td>2024-02-20</td></tr>
+              <tr><td><div class="user-cell"><div class="user-av">ሙ</div><div><div class="user-name">ሙሉ ወርቅ</div></div></div></td><td><span class="badge2 badge2-gold">🏢 Business Yearly</span></td><td><strong>5,000 ETB</strong></td><td>⚡ Chapa</td><td><span class="badge2 badge2-green">✅ Paid</span></td><td>2024-01-05</td></tr>
+              <tr><td><div class="user-cell"><div class="user-av">ሰ</div><div><div class="user-name">ሰሎሞን ጌታቸው</div></div></div></td><td><span class="badge2 badge2-green">⭐ Premium Monthly</span></td><td><strong>200 ETB</strong></td><td>📱 Telebirr</td><td><span class="badge2 badge2-gold">⏳ Pending</span></td><td>2024-03-10</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- VERIFIED -->
+      <div id="section-verified" style="display:none">
+        <div style="margin-bottom:20px"><h1 style="font-size:1.3rem;font-weight:900;color:var(--g900)">Verified Users</h1></div>
+        <div class="admin-card">
+          <div class="admin-card-header"><div class="admin-card-title"><i class="fas fa-shield-alt" style="color:var(--g)"></i> Verified Users (6)</div></div>
+          <table class="admin-table">
+            <thead><tr><th>ስም</th><th>ፕላን</th><th>Verification Level</th><th>ቀን</th><th>ድርጊቶች</th></tr></thead>
+            <tbody id="verified-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- FRAUD -->
+      <div id="section-fraud" style="display:none">
+        <div style="margin-bottom:20px"><h1 style="font-size:1.3rem;font-weight:900;color:var(--g900)">Fraud Reports</h1></div>
+        <div class="admin-card">
+          <div class="admin-card-header"><div class="admin-card-title"><i class="fas fa-flag" style="color:var(--red)"></i> ቅሬታዎች (2)</div></div>
+          <table class="admin-table">
+            <thead><tr><th>ቅሬታ ዓይነት</th><th>ሪፖርት ያደረገ</th><th>ስለ ማን</th><th>ሁኔታ</th><th>ቀን</th><th>ድርጊቶች</th></tr></thead>
+            <tbody>
+              <tr><td><span class="badge2 badge2-red">ሐሰተኛ ምርት</span></td><td>ዮሐንስ ካሳ</td><td>ሰሎሞን ጌታቸው</td><td><span class="badge2 badge2-gold">⏳ Under Review</span></td><td>2024-04-09</td><td><div class="action-btns"><button class="action-btn action-btn-view" onclick="showToast('ቅሬታ ዝርዝር ✅','success')"><i class="fas fa-eye"></i></button><button class="action-btn action-btn-del" onclick="showToast('ቅሬታ ተዘጋ ✅','success')"><i class="fas fa-check"></i></button></div></td></tr>
+              <tr><td><span class="badge2 badge2-red">ክፍያ ወሰደ ምርት አልሰጠም</span></td><td>ዳዊት ሙሉጌታ</td><td>ሰሎሞን ጌታቸው</td><td><span class="badge2 badge2-red">🚨 Urgent</span></td><td>2024-04-10</td><td><div class="action-btns"><button class="action-btn action-btn-view" onclick="showToast('ቅሬታ ዝርዝር ✅','success')"><i class="fas fa-eye"></i></button><button class="action-btn action-btn-del" onclick="showToast('ቅሬታ ተዘጋ ✅','success')"><i class="fas fa-check"></i></button></div></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- SETTINGS -->
+      <div id="section-settings" style="display:none">
+        <div style="margin-bottom:20px"><h1 style="font-size:1.3rem;font-weight:900;color:var(--g900)">Settings</h1></div>
+        <div class="admin-card">
+          <div class="admin-card-header"><div class="admin-card-title"><i class="fas fa-cog" style="color:var(--g)"></i> ዋጋ ቅንብሮች</div></div>
+          <div style="padding:20px;display:grid;grid-template-columns:1fr 1fr;gap:16px">
+            <div class="fg"><label>Premium Monthly (ETB)</label><input class="fi" type="number" value="200"/></div>
+            <div class="fg"><label>Premium Yearly (ETB)</label><input class="fi" type="number" value="1000"/></div>
+            <div class="fg"><label>Business Monthly (ETB)</label><input class="fi" type="number" value="500"/></div>
+            <div class="fg"><label>Business Yearly (ETB)</label><input class="fi" type="number" value="5000"/></div>
+          </div>
+          <div style="padding:0 20px 20px">
+            <button class="btn-modal btn-modal-primary" style="width:auto;padding:10px 24px" onclick="showToast('ቅንብሮች ተቀምጠዋል ✅','success')"><i class="fas fa-save"></i> ቅንብሮች አስቀምጥ</button>
+          </div>
+        </div>
+        <div class="admin-card">
+          <div class="admin-card-header"><div class="admin-card-title"><i class="fas fa-key" style="color:var(--g)"></i> Admin Password ቀይር</div></div>
+          <div style="padding:20px;max-width:400px">
+            <div class="fg"><label>አሁን ያለ Password</label><input class="fi" type="password" placeholder="••••••••"/></div>
+            <div class="fg"><label>አዲስ Password</label><input class="fi" type="password" placeholder="••••••••"/></div>
+            <div class="fg"><label>ያረጋግጡ</label><input class="fi" type="password" placeholder="••••••••"/></div>
+            <button class="btn-modal btn-modal-primary" style="width:auto;padding:10px 24px" onclick="showToast('Admin Password ተቀይሯል ✅','success')"><i class="fas fa-save"></i> ቀይር</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<!-- MODALS -->
+<div class="modal-overlay" id="view-modal">
+  <div class="modal" style="max-width:520px">
+    <button class="modal-close" onclick="closeModal('view-modal')"><i class="fas fa-times"></i></button>
+    <h2 id="view-name">ተጠቃሚ ዝርዝር</h2>
+    <p id="view-plan" style="color:var(--g);font-weight:600;margin-bottom:16px"></p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px">
+      <div style="background:var(--g50);border-radius:var(--rsm);padding:12px"><div style="font-size:.72rem;color:var(--g500);margin-bottom:3px">ስልክ</div><div id="view-phone" style="font-size:.88rem;font-weight:600;color:var(--g900)"></div></div>
+      <div style="background:var(--g50);border-radius:var(--rsm);padding:12px"><div style="font-size:.72rem;color:var(--g500);margin-bottom:3px">ሁኔታ</div><div id="view-status" style="font-size:.88rem;font-weight:600;color:var(--g900)"></div></div>
+      <div style="background:var(--g50);border-radius:var(--rsm);padding:12px"><div style="font-size:.72rem;color:var(--g500);margin-bottom:3px">ማስታወቂያዎች</div><div id="view-ads" style="font-size:.88rem;font-weight:600;color:var(--g900)"></div></div>
+      <div style="background:var(--g50);border-radius:var(--rsm);padding:12px"><div style="font-size:.72rem;color:var(--g500);margin-bottom:3px">ተቀላቀሉ</div><div id="view-joined" style="font-size:.88rem;font-weight:600;color:var(--g900)"></div></div>
+    </div>
+    <div style="display:flex;gap:10px">
+      <button class="btn-modal btn-modal-primary" style="flex:1" onclick="closeModal('view-modal');openModal('reset-modal')"><i class="fas fa-key"></i> Reset Password</button>
+      <button class="btn-modal btn-modal-secondary" style="flex:1" onclick="closeModal('view-modal')">ዝጋ</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="reset-modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('reset-modal')"><i class="fas fa-times"></i></button>
+    <div style="text-align:center;margin-bottom:16px"><div style="font-size:2.5rem">🔑</div></div>
+    <h2 id="reset-title">Password Reset</h2>
+    <p id="reset-sub">ለዚህ ተጠቃሚ አዲስ የይለፍ ቃል ያስቀምጡ</p>
+    <div class="fg"><label>አዲስ የይለፍ ቃል</label><input class="fi" type="password" id="new-password" placeholder="ቢያንስ 8 ፊደሎች"/></div>
+    <div class="fg"><label>ያረጋግጡ</label><input class="fi" type="password" id="confirm-password" placeholder="ደግሞ ያስገቡ"/></div>
+    <div style="display:flex;gap:10px;margin-top:4px">
+      <button class="btn-modal btn-modal-primary" style="flex:1" onclick="doResetPassword()"><i class="fas fa-key"></i> Reset Password</button>
+      <button class="btn-modal btn-modal-secondary" style="flex:1" onclick="closeModal('reset-modal')">ሰርዝ</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="edit-modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('edit-modal')"><i class="fas fa-times"></i></button>
+    <h2 id="edit-title">ተጠቃሚ አርትዕ</h2>
+    <p>የተጠቃሚ ፕላን ወይም ሁኔታ ይቀይሩ</p>
+    <div class="fg"><label>ፕላን</label>
+      <select class="fi-sel" id="edit-plan">
+        <option value="premium-monthly">⭐ Premium Monthly (200 ETB)</option>
+        <option value="premium-yearly">⭐ Premium Yearly (1,000 ETB)</option>
+        <option value="business-monthly">🏢 Business Monthly (500 ETB)</option>
+        <option value="business-yearly">🏢 Business Yearly (5,000 ETB)</option>
+      </select>
+    </div>
+    <div class="fg"><label>ሁኔታ</label>
+      <select class="fi-sel" id="edit-status">
+        <option value="active">✅ Active</option>
+        <option value="suspended">🚫 Suspended</option>
+        <option value="pending">⏳ Pending</option>
+      </select>
+    </div>
+    <div style="display:flex;gap:10px;margin-top:4px">
+      <button class="btn-modal btn-modal-primary" style="flex:1" onclick="doEditUser()"><i class="fas fa-save"></i> አስቀምጥ</button>
+      <button class="btn-modal btn-modal-secondary" style="flex:1" onclick="closeModal('edit-modal')">ሰርዝ</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="delete-modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('delete-modal')"><i class="fas fa-times"></i></button>
+    <div style="text-align:center;margin-bottom:16px"><div style="font-size:2.5rem">⚠️</div></div>
+    <h2 id="delete-title">ተጠቃሚ ሰርዝ</h2>
+    <p>ይህን ተጠቃሚ ለማስወገድ እርግጠኛ ነዎት? ይህ ድርጊት ሊቀለበስ አይችልም።</p>
+    <div style="display:flex;gap:10px;margin-top:16px">
+      <button class="btn-modal btn-modal-danger" style="flex:1" onclick="doDeleteUser()"><i class="fas fa-trash"></i> አዎ፣ ሰርዝ</button>
+      <button class="btn-modal btn-modal-secondary" style="flex:1" onclick="closeModal('delete-modal')">ሰርዝ</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast" class="toast"></div>
+
+<script>
+// ===== DATA =====
+var USERS = [
+  {id:"U001",name:"ሀይሉ ተስፋዬ",phone:"+251 911 234 567",email:"hailu@email.com",plan:"Premium",ptype:"yearly",joined:"2024-01-15",status:"active",ads:12,verified:true},
+  {id:"U002",name:"ብርሃን አለሙ",phone:"+251 922 345 678",email:"birhan@email.com",plan:"Business",ptype:"monthly",joined:"2024-02-20",status:"active",ads:45,verified:true},
+  {id:"U003",name:"ሰሎሞን ጌታቸው",phone:"+251 933 456 789",email:"solomon@email.com",plan:"Premium",ptype:"monthly",joined:"2024-03-10",status:"active",ads:8,verified:false},
+  {id:"U004",name:"ሙሉ ወርቅ",phone:"+251 944 567 890",email:"mulu@email.com",plan:"Business",ptype:"yearly",joined:"2024-01-05",status:"active",ads:67,verified:true},
+  {id:"U005",name:"ዮሐንስ ካሳ",phone:"+251 955 678 901",email:"yohannes@email.com",plan:"Premium",ptype:"yearly",joined:"2024-04-01",status:"suspended",ads:3,verified:true},
+  {id:"U006",name:"ጌታቸው ሃይሌ",phone:"+251 966 789 012",email:"getachew@email.com",plan:"Premium",ptype:"monthly",joined:"2024-03-25",status:"active",ads:19,verified:true},
+  {id:"U007",name:"አስቴር ደምሴ",phone:"+251 977 890 123",email:"aster@email.com",plan:"Business",ptype:"yearly",joined:"2024-02-14",status:"active",ads:88,verified:true},
+  {id:"U008",name:"ዳዊት ሙሉጌታ",phone:"+251 988 901 234",email:"dawit@email.com",plan:"Premium",ptype:"monthly",joined:"2024-04-10",status:"pending",ads:0,verified:false}
+];
+
+var currentUserId = null;
+var currentUserName = null;
+var filteredUsers = USERS.slice();
+
+// ===== LOGIN =====
+function doLogin() {
+  var u = document.getElementById('admin-user').value;
+  var p = document.getElementById('admin-pass').value;
+  if ((u === 'admin' && p === 'admin123') || (u === 'Emilia' && p === 'Emilia-2019')) {
+    document.getElementById('login-screen').style.display = 'none';
+    document.getElementById('admin-app').style.display = 'flex';
+    initAdmin();
+    showToast('✅ ወደ Admin Panel ተገብቷል!', 'success');
+  } else {
+    showToast('❌ Username ወይም Password ትክክል አይደለም!', 'error');
+  }
+}
+
+function initAdmin() {
+  document.getElementById('today-date').textContent = new Date().toLocaleDateString('en-US', {year:'numeric',month:'long',day:'numeric'});
+  renderUsers(USERS);
+  renderDashUsers();
+  renderVerified();
+  renderChart();
+}
+
+// ===== NAVIGATION =====
+function showSection(name, navEl) {
+  var sections = document.querySelectorAll('[id^="section-"]');
+  for (var i=0; i<sections.length; i++) sections[i].style.display = 'none';
+  var el = document.getElementById('section-'+name);
+  if (el) el.style.display = 'block';
+  var navItems = document.querySelectorAll('.nav-item');
+  for (var i=0; i<navItems.length; i++) navItems[i].classList.remove('active');
+  if (navEl) navEl.classList.add('active');
+  var titles = {dashboard:'Dashboard',users:'ተጠቃሚዎች / Users',ads:'ማስታወቂያዎች / Ads',payments:'ክፍያዎች / Payments',verified:'Verified Users',fraud:'Fraud Reports',settings:'Settings'};
+  document.getElementById('page-title').textContent = titles[name] || name;
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function toggleSidebar() {
+  var sb = document.getElementById('sidebar');
+  sb.classList.toggle('open');
+}
+
+// ===== RENDER USERS =====
+function planBadge(plan, ptype) {
+  if (plan === 'Business') return '<span class="badge2 badge2-gold">🏢 Business — '+ptype+'</span>';
+  return '<span class="badge2 badge2-green">⭐ Premium — '+ptype+'</span>';
+}
+function statusBadge(s) {
+  if (s==='active') return '<span class="badge2 badge2-green"><i class="fas fa-circle" style="font-size:.5rem"></i> Active</span>';
+  if (s==='suspended') return '<span class="badge2 badge2-red"><i class="fas fa-circle" style="font-size:.5rem"></i> Suspended</span>';
+  return '<span class="badge2 badge2-gray"><i class="fas fa-circle" style="font-size:.5rem"></i> Pending</span>';
+}
+function verifiedBadge(v) {
+  return v ? '<span class="badge2 badge2-green">✅ Verified</span>' : '<span class="badge2 badge2-gray">⬜ Unverified</span>';
+}
+
+function renderUsers(list) {
+  var tbody = document.getElementById('users-tbody');
+  tbody.innerHTML = list.map(function(u) {
+    return '<tr data-plan="'+u.plan.toLowerCase()+'" data-status="'+u.status+'">' +
+      '<td><div class="user-cell"><div class="user-av">'+u.name[0]+'</div><div><div class="user-name">'+u.name+'</div><div class="user-phone">'+u.phone+'</div></div></div></td>' +
+      '<td>'+u.email+'</td>' +
+      '<td>'+planBadge(u.plan,u.ptype)+'</td>' +
+      '<td>'+verifiedBadge(u.verified)+'</td>' +
+      '<td>'+statusBadge(u.status)+'</td>' +
+      '<td><strong>'+u.ads+'</strong></td>' +
+      '<td>'+u.joined+'</td>' +
+      '<td><div class="action-btns">' +
+        '<button class="action-btn action-btn-view" onclick="viewUser(''+u.id+'',''+u.name+'',''+u.phone+'',''+u.plan+'',''+u.ptype+'',''+u.status+'','+u.ads+',''+u.joined+'')" title="View"><i class="fas fa-eye"></i></button>' +
+        '<button class="action-btn action-btn-key" onclick="resetPassword(''+u.id+'',''+u.name+'')" title="Reset Password"><i class="fas fa-key"></i></button>' +
+        '<button class="action-btn action-btn-edit" onclick="editUser(''+u.id+'',''+u.name+'',''+u.plan+'',''+u.ptype+'',''+u.status+'')" title="Edit"><i class="fas fa-edit"></i></button>' +
+        '<button class="action-btn action-btn-del" onclick="deleteUser(''+u.id+'',''+u.name+'')" title="Delete"><i class="fas fa-trash"></i></button>' +
+      '</div></td>' +
+    '</tr>';
+  }).join('');
+  document.getElementById('user-count').textContent = list.length;
+  document.getElementById('pag-info').textContent = '1-'+list.length+' ከ '+list.length+' ተጠቃሚዎች';
+}
+
+function renderDashUsers() {
+  var tbody = document.getElementById('dash-users');
+  tbody.innerHTML = USERS.slice(0,5).map(function(u) {
+    return '<tr><td><div class="user-cell"><div class="user-av">'+u.name[0]+'</div><div><div class="user-name">'+u.name+'</div><div class="user-phone">'+u.phone+'</div></div></div></td><td>'+planBadge(u.plan,u.ptype)+'</td><td>'+statusBadge(u.status)+'</td><td>'+u.joined+'</td></tr>';
+  }).join('');
+}
+
+function renderVerified() {
+  var tbody = document.getElementById('verified-tbody');
+  tbody.innerHTML = USERS.filter(function(u){return u.verified;}).map(function(u) {
+    return '<tr><td><div class="user-cell"><div class="user-av">'+u.name[0]+'</div><div><div class="user-name">'+u.name+'</div><div class="user-phone">'+u.phone+'</div></div></div></td><td>'+planBadge(u.plan,u.ptype)+'</td><td><span class="badge2 badge2-green">✅ Fayda ID + Selfie</span></td><td>'+u.joined+'</td><td><div class="action-btns"><button class="action-btn action-btn-view" onclick="showToast('Verification ዝርዝር ✅','success')"><i class="fas fa-eye"></i></button></div></td></tr>';
+  }).join('');
+}
+
+function renderChart() {
+  var data = [{m:'ጥቅምት',v:8200,h:55},{m:'ህዳር',v:9500,h:63},{m:'ታህሳስ',v:11000,h:73},{m:'ጥር',v:10200,h:68},{m:'የካቲት',v:12800,h:85},{m:'መጋቢት',v:14200,h:95}];
+  var chart = document.getElementById('revenue-chart');
+  var labels = document.getElementById('revenue-labels');
+  chart.innerHTML = data.map(function(d) {
+    return '<div style="flex:1;background:linear-gradient(to top,var(--g),var(--gl));border-radius:4px 4px 0 0;height:'+d.h+'%;opacity:.8;cursor:pointer;transition:var(--tr)" title="'+d.m+': '+d.v.toLocaleString()+' ETB" onmouseover="this.style.opacity=1;this.style.transform='scaleY(1.05)'" onmouseout="this.style.opacity=.8;this.style.transform='scaleY(1)'"></div>';
+  }).join('');
+  labels.innerHTML = data.map(function(d) {
+    return '<div style="flex:1;text-align:center;font-size:.68rem;color:var(--g500)">'+d.m+'</div>';
+  }).join('');
+}
+
+// ===== FILTER & SEARCH =====
+function filterUsers(type, btn) {
+  var btns = document.querySelectorAll('.filter-btn');
+  for (var i=0; i<btns.length; i++) btns[i].classList.remove('active');
+  if (btn) btn.classList.add('active');
+  var list = USERS.filter(function(u) {
+    if (type === 'premium') return u.plan === 'Premium';
+    if (type === 'business') return u.plan === 'Business';
+    if (type === 'active') return u.status === 'active';
+    if (type === 'suspended') return u.status === 'suspended';
+    return true;
+  });
+  renderUsers(list);
+}
+
+function searchUsers(q) {
+  if (!q) { renderUsers(USERS); return; }
+  var list = USERS.filter(function(u) {
+    return (u.name+u.email+u.phone+u.plan+u.status).toLowerCase().includes(q.toLowerCase());
+  });
+  renderUsers(list);
+}
+
+// ===== USER ACTIONS =====
+function viewUser(id, name, phone, plan, ptype, status, ads, joined) {
+  currentUserId = id; currentUserName = name;
+  document.getElementById('view-name').textContent = name + ' (' + id + ')';
+  document.getElementById('view-plan').textContent = plan + ' — ' + ptype;
+  document.getElementById('view-phone').textContent = phone;
+  document.getElementById('view-status').textContent = status.charAt(0).toUpperCase() + status.slice(1);
+  document.getElementById('view-ads').textContent = ads + ' ማስታወቂያዎች';
+  document.getElementById('view-joined').textContent = joined;
+  openModal('view-modal');
+}
+
+function resetPassword(id, name) {
+  currentUserId = id; currentUserName = name;
+  document.getElementById('reset-title').textContent = 'Password Reset — ' + name;
+  document.getElementById('reset-sub').textContent = 'ለ ' + name + ' አዲስ የይለፍ ቃል ያስቀምጡ';
+  document.getElementById('new-password').value = '';
+  document.getElementById('confirm-password').value = '';
+  openModal('reset-modal');
+}
+
+function doResetPassword() {
+  var np = document.getElementById('new-password').value;
+  var cp = document.getElementById('confirm-password').value;
+  if (np.length < 8) { showToast('ቢያንስ 8 ፊደሎች ያስፈልጋሉ!', 'error'); return; }
+  if (np !== cp) { showToast('የይለፍ ቃሎቹ አይዛመዱም!', 'error'); return; }
+  closeModal('reset-modal');
+  showToast('✅ ' + currentUserName + ' — Password ተቀይሯል!', 'success');
+}
+
+function editUser(id, name, plan, ptype, status) {
+  currentUserId = id; currentUserName = name;
+  document.getElementById('edit-title').textContent = 'አርትዕ — ' + name;
+  document.getElementById('edit-plan').value = plan.toLowerCase() + '-' + ptype;
+  document.getElementById('edit-status').value = status;
+  openModal('edit-modal');
+}
+
+function doEditUser() {
+  closeModal('edit-modal');
+  showToast('✅ ' + currentUserName + ' — ተዘምኗል!', 'success');
+}
+
+function deleteUser(id, name) {
+  currentUserId = id; currentUserName = name;
+  document.getElementById('delete-title').textContent = 'ሰርዝ — ' + name + '?';
+  openModal('delete-modal');
+}
+
+function doDeleteUser() {
+  USERS = USERS.filter(function(u){ return u.id !== currentUserId; });
+  renderUsers(USERS);
+  closeModal('delete-modal');
+  showToast('🗑️ ' + currentUserName + ' — ተሰርዟል!', 'error');
+}
+
+// ===== MODALS =====
+function openModal(id) { var m=document.getElementById(id); if(m) m.classList.add('open'); }
+function closeModal(id) { var m=document.getElementById(id); if(m) m.classList.remove('open'); }
+document.addEventListener('click', function(e) { if(e.target.classList.contains('modal-overlay')) e.target.classList.remove('open'); });
+
+// ===== TOAST =====
+function showToast(msg, type) {
+  var el = document.getElementById('toast');
+  el.textContent = msg;
+  el.className = 'toast ' + (type||'');
+  setTimeout(function(){ el.classList.add('show'); }, 10);
+  setTimeout(function(){ el.classList.remove('show'); }, 3000);
+}
+
+// ===== LOGOUT =====
+function adminLogout() {
+  if (confirm('ከAdmin Panel ለመውጣት እርግጠኛ ነዎት?')) {
+    showToast('ወጥተዋል ✅', 'success');
+    setTimeout(function(){ window.location.href='index.html'; }, 1000);
+  }
+}
+
+// Enter key for login
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Enter' && document.getElementById('login-screen').style.display !== 'none') doLogin();
+});
+</script>
+</body>
+</html>

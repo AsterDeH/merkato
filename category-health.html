@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="am">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>ጤናና ውበት — Health & Beauty | መርካቶ Marketplace</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Ethiopic:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--g:#1a7a4a;--gd:#145e38;--gl:#22a05e;--gold:#f5a623;--goldd:#d4891a;--red:#e63946;--bg:#f4f6f8;--w:#fff;--g50:#f9fafb;--g100:#f3f4f6;--g200:#e5e7eb;--g300:#d1d5db;--g400:#9ca3af;--g500:#6b7280;--g600:#4b5563;--g700:#374151;--g800:#1f2937;--g900:#111827;--sh:0 4px 16px rgba(0,0,0,.10);--shl:0 10px 40px rgba(0,0,0,.14);--r:14px;--rsm:8px;--rl:20px;--rxl:28px;--tr:all .25s cubic-bezier(.4,0,.2,1)}
+html{scroll-behavior:smooth}
+body{font-family:"Noto Sans Ethiopic","Inter",sans-serif;background:var(--bg);color:var(--g800);line-height:1.6;overflow-x:hidden}
+a{text-decoration:none;color:inherit}ul{list-style:none}
+button{cursor:pointer;border:none;outline:none;font-family:inherit}
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:var(--g100)}::-webkit-scrollbar-thumb{background:var(--g);border-radius:3px}
+.ann{background:linear-gradient(90deg,var(--gd),var(--g),var(--gd));background-size:200% 100%;animation:shimmer 4s linear infinite;color:#fff;text-align:center;padding:9px 20px;font-size:.82rem;font-weight:500}
+@keyframes shimmer{0%{background-position:0% 50%}100%{background-position:200% 50%}}
+.ann span{margin:0 14px;opacity:.85}.ann strong{opacity:1}
+.navbar{position:sticky;top:0;z-index:1000;background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--g200);box-shadow:0 2px 20px rgba(0,0,0,.06)}
+.ntop{display:flex;align-items:center;justify-content:space-between;padding:12px 40px;gap:16px;flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:10px;flex-shrink:0;text-decoration:none}
+.logo-ic{width:44px;height:44px;background:linear-gradient(135deg,var(--g),var(--gl));border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;box-shadow:0 4px 14px rgba(26,122,74,.35)}
+.logo-am{font-size:1.1rem;font-weight:800;color:var(--gd)}.logo-en{font-size:.68rem;font-weight:500;color:var(--g500);letter-spacing:.5px;text-transform:uppercase}
+.nsearch{flex:1;max-width:500px;display:flex;background:var(--g100);border:2px solid transparent;border-radius:50px;overflow:hidden;transition:var(--tr)}
+.nsearch:focus-within{border-color:var(--g);background:#fff;box-shadow:0 0 0 4px rgba(26,122,74,.1)}
+.nsearch input{flex:1;border:none;background:transparent;padding:10px 16px;font-size:.9rem;font-family:inherit;color:var(--g800);outline:none}
+.nsearch input::placeholder{color:var(--g400)}
+.nsearch select{border:none;background:transparent;border-left:1px solid var(--g300);padding:0 12px;font-size:.8rem;font-family:inherit;color:var(--g600);outline:none;cursor:pointer}
+.nsearch button{background:var(--g);color:#fff;padding:0 18px;font-size:.9rem;transition:var(--tr);border:none;cursor:pointer}
+.nsearch button:hover{background:var(--gd)}
+.nacts{display:flex;align-items:center;gap:8px;flex-shrink:0;flex-wrap:wrap}
+.nb{display:flex;align-items:center;gap:6px;padding:8px 14px;border-radius:50px;font-size:.82rem;font-weight:600;transition:var(--tr);cursor:pointer;text-decoration:none;background:transparent}
+.nb-gh{color:var(--g700)}.nb-gh:hover{background:var(--g100);color:var(--g)}
+.nb-o{border:2px solid var(--g);color:var(--g)}.nb-o:hover{background:var(--g);color:#fff}
+.nb-s{background:var(--g);color:#fff}.nb-s:hover{background:var(--gd);transform:translateY(-1px)}
+.nb-gd{background:var(--gold);color:#fff}.nb-gd:hover{background:var(--goldd);transform:translateY(-1px)}
+.nav-lang{display:flex;align-items:center;gap:6px;flex-shrink:0}
+.nav-lang-lbl{font-size:.72rem;color:var(--g500);font-weight:500}
+.lsw{display:flex;background:var(--g100);border:2px solid var(--g200);border-radius:50px;overflow:hidden}
+.lsw button{padding:6px 14px;font-size:.78rem;font-weight:700;font-family:inherit;color:var(--g500);background:transparent;transition:var(--tr);cursor:pointer;border:none}
+.lsw button.active{background:var(--g);color:#fff;border-radius:50px}
+.lsw button:hover:not(.active){color:var(--g);background:rgba(26,122,74,.08)}
+.ncats{display:flex;align-items:center;gap:3px;padding:0 40px 10px;overflow-x:auto}
+.ncats::-webkit-scrollbar{height:0}
+.ncat{display:flex;align-items:center;gap:5px;padding:5px 12px;border-radius:50px;font-size:.8rem;font-weight:500;color:var(--g600);white-space:nowrap;transition:var(--tr);text-decoration:none}
+.ncat:hover,.ncat.active{background:rgba(26,122,74,.12);color:var(--g);font-weight:700}
+.hero{position:relative;min-height:580px;display:flex;align-items:center;overflow:hidden;background:linear-gradient(135deg,#0d4a2a 0%,#1a7a4a 40%,#22a05e 70%,#2dc76d 100%)}
+.hbg{position:absolute;inset:0;background-image:radial-gradient(circle at 20% 50%,rgba(255,255,255,.06) 0%,transparent 50%),radial-gradient(circle at 80% 20%,rgba(245,166,35,.12) 0%,transparent 40%)}
+.hgrid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:50px 50px}
+.hin{position:relative;z-index:2;max-width:1280px;margin:0 auto;padding:56px 40px;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;width:100%}
+.hleft{color:#fff}
+.hbadge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.15);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.25);border-radius:50px;padding:6px 16px;font-size:.8rem;font-weight:600;margin-bottom:20px}
+.hbadge .dot{width:7px;height:7px;background:var(--gold);border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.6;transform:scale(1.3)}}
+.htitle{font-size:clamp(2rem,4vw,3.2rem);font-weight:900;line-height:1.15;margin-bottom:10px}
+.htitle .hl{color:var(--gold);text-shadow:0 0 30px rgba(245,166,35,.4)}
+.htag{font-size:1rem;opacity:.85;margin-bottom:26px;line-height:1.6}
+.hsbox{background:rgba(255,255,255,.12);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.25);border-radius:20px;padding:20px;margin-bottom:24px}
+.hsbox label{display:block;font-size:.78rem;font-weight:600;opacity:.8;margin-bottom:10px;text-transform:uppercase;letter-spacing:.5px}
+.hsrow{display:flex;gap:8px}
+.hsrow input{flex:1;background:rgba(255,255,255,.92);border:none;border-radius:8px;padding:13px 16px;font-size:.92rem;font-family:inherit;color:var(--g800);outline:none}
+.hsrow input::placeholder{color:var(--g400)}
+.hsrow select{background:rgba(255,255,255,.92);border:none;border-radius:8px;padding:0 14px;font-size:.83rem;font-family:inherit;color:var(--g700);outline:none;cursor:pointer}
+.hsrow button{background:var(--gold);color:#fff;border-radius:8px;padding:13px 22px;font-size:.92rem;font-weight:700;font-family:inherit;transition:var(--tr);border:none;cursor:pointer}
+.hsrow button:hover{background:var(--goldd);transform:translateY(-1px)}
+.hqcats{display:flex;flex-wrap:wrap;gap:8px}
+.hqcat{display:flex;align-items:center;gap:5px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.22);border-radius:50px;padding:6px 14px;font-size:.79rem;font-weight:500;color:#fff;cursor:pointer;transition:var(--tr);text-decoration:none}
+.hqcat:hover{background:rgba(255,255,255,.28);transform:translateY(-2px)}
+.hstats{display:flex;gap:24px;margin-top:30px}
+.hst .num{font-size:1.55rem;font-weight:900;color:var(--gold)}.hst .lbl{font-size:.73rem;opacity:.75;font-weight:500}
+.hright{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+.hcard{background:rgba(255,255,255,.12);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.2);border-radius:14px;padding:18px;color:#fff;transition:var(--tr);cursor:pointer}
+.hcard:hover{background:rgba(255,255,255,.2);transform:translateY(-3px)}
+.hcard.feat{grid-column:span 2;display:flex;align-items:center;gap:14px;background:rgba(245,166,35,.2);border-color:rgba(245,166,35,.4)}
+.hci{font-size:1.8rem;margin-bottom:8px}.hcard.feat .hci{font-size:2.2rem;margin-bottom:0}
+.hct{font-size:.9rem;font-weight:700;margin-bottom:3px}.hcs{font-size:.75rem;opacity:.75}
+.hcb{display:inline-block;background:var(--gold);color:#fff;font-size:.66rem;font-weight:700;padding:2px 8px;border-radius:50px;margin-top:6px}
+.sbar{background:linear-gradient(135deg,var(--gd),var(--g));padding:30px 40px}
+.sbar-in{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.si{text-align:center;color:#fff;padding:16px;border-right:1px solid rgba(255,255,255,.15)}.si:last-child{border-right:none}
+.si .ic{font-size:1.6rem;margin-bottom:6px;opacity:.9}.si .vl{font-size:1.9rem;font-weight:900;color:var(--gold)}.si .lb{font-size:.8rem;opacity:.8;margin-top:2px}
+.sec{padding:56px 40px;max-width:1280px;margin:0 auto}
+.sech{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:32px}
+.seye{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--g);margin-bottom:5px}
+.stitle{font-size:1.7rem;font-weight:800;color:var(--g900)}.ssub{font-size:.88rem;color:var(--g500);margin-top:4px}
+.sall{display:flex;align-items:center;gap:5px;font-size:.83rem;font-weight:600;color:var(--g);transition:var(--tr);text-decoration:none}.sall:hover{gap:9px}
+.cgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:16px}
+.cc{background:var(--w);border-radius:var(--r);padding:24px 16px;text-align:center;cursor:pointer;transition:var(--tr);border:2px solid transparent;box-shadow:0 1px 3px rgba(0,0,0,.08);position:relative;overflow:hidden;text-decoration:none;display:block}
+.cc::before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,var(--g),var(--gl));opacity:0;transition:var(--tr)}
+.cc:hover{border-color:var(--g);transform:translateY(-5px);box-shadow:var(--shl)}.cc:hover::before{opacity:1}
+.cc:hover .cci,.cc:hover .ccn,.cc:hover .ccc{color:#fff;position:relative;z-index:1}
+.cci{font-size:2.2rem;margin-bottom:10px;position:relative;z-index:1;transition:var(--tr)}
+.ccn{font-size:.88rem;font-weight:700;color:var(--g800);position:relative;z-index:1;transition:var(--tr)}
+.ccc{font-size:.73rem;color:var(--g400);margin-top:3px;position:relative;z-index:1;transition:var(--tr)}
+.cc.fc{background:linear-gradient(135deg,var(--g),var(--gl))}.cc.fc .ccn,.cc.fc .ccc{color:rgba(255,255,255,.9)}.cc.fc::before{display:none}
+.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:20px}
+.pc{background:var(--w);border-radius:var(--r);overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.08);transition:var(--tr);cursor:pointer;border:1px solid var(--g200);position:relative}
+.pc:hover{transform:translateY(-5px);box-shadow:var(--shl);border-color:var(--g)}
+.pim{width:100%;height:200px;display:flex;align-items:center;justify-content:center;font-size:3.5rem}
+.pbg{position:absolute;top:10px;left:10px;display:flex;flex-direction:column;gap:4px}
+.bdg{display:inline-flex;align-items:center;gap:3px;padding:3px 9px;border-radius:50px;font-size:.7rem;font-weight:700}
+.bn{background:var(--g);color:#fff}.bh{background:var(--red);color:#fff}.bv{background:rgba(26,122,74,.9);color:#fff}.bp{background:var(--gold);color:#fff}.be{background:#6366f1;color:#fff}
+.pwh{position:absolute;top:10px;right:10px;width:32px;height:32px;background:rgba(255,255,255,.9);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.85rem;color:var(--g400);transition:var(--tr);cursor:pointer;border:none}
+.pwh:hover{color:var(--red);background:#fff}
+.pbd{padding:14px}.pct{font-size:.7rem;font-weight:600;color:var(--g);text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px}
+.ptl{font-size:.93rem;font-weight:700;color:var(--g900);margin-bottom:7px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.ppr{font-size:1.15rem;font-weight:900;color:var(--gd);margin-bottom:9px}.ppr .cu{font-size:.78rem;font-weight:600}.ppr .op{font-size:.8rem;color:var(--g400);text-decoration:line-through;font-weight:400;margin-left:5px}
+.pmt{display:flex;align-items:center;justify-content:space-between;padding-top:9px;border-top:1px solid var(--g100)}
+.psl{display:flex;align-items:center;gap:5px;font-size:.76rem;color:var(--g500)}
+.sav{width:22px;height:22px;border-radius:50%;background:var(--g);display:flex;align-items:center;justify-content:center;font-size:.62rem;color:#fff;font-weight:700}
+.prt{display:flex;align-items:center;gap:2px;font-size:.76rem;color:var(--gold)}.prt span{color:var(--g500)}
+.plc{display:flex;align-items:center;gap:3px;font-size:.73rem;color:var(--g400);margin-top:5px}
+.pft{padding:10px 14px;border-top:1px solid var(--g100);display:flex;gap:7px}
+.bc{flex:1;background:var(--g);color:#fff;border-radius:var(--rsm);padding:9px;font-size:.8rem;font-weight:600;font-family:inherit;transition:var(--tr);display:flex;align-items:center;justify-content:center;gap:4px;border:none;cursor:pointer}.bc:hover{background:var(--gd)}
+.bs{background:var(--g100);color:var(--g600);border-radius:var(--rsm);padding:9px 12px;font-size:.8rem;font-family:inherit;transition:var(--tr);border:none;cursor:pointer}.bs:hover{background:var(--g200)}
+.bnr{background:linear-gradient(135deg,#1a1a2e,#16213e,#0f3460);border-radius:var(--rxl);padding:44px;display:grid;grid-template-columns:1fr auto;gap:36px;align-items:center;overflow:hidden;position:relative;margin:0 40px}
+.bnr::before{content:"";position:absolute;top:-50%;right:-10%;width:380px;height:380px;background:radial-gradient(circle,rgba(245,166,35,.2),transparent 70%);border-radius:50%}
+.bnrc{position:relative;z-index:1}.bnre{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--gold);margin-bottom:10px}
+.bnrt{font-size:1.8rem;font-weight:900;color:#fff;line-height:1.2;margin-bottom:12px}.bnrs{font-size:.9rem;color:rgba(255,255,255,.7);margin-bottom:20px}
+.bnrb{display:flex;gap:10px;flex-wrap:wrap}
+.bpri{background:var(--gold);color:#fff;border-radius:50px;padding:12px 24px;font-size:.88rem;font-weight:700;font-family:inherit;transition:var(--tr);display:inline-flex;align-items:center;gap:7px;border:none;cursor:pointer}.bpri:hover{background:var(--goldd);transform:translateY(-2px)}
+.bsec{background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.25);border-radius:50px;padding:12px 24px;font-size:.88rem;font-weight:600;font-family:inherit;transition:var(--tr);cursor:pointer}.bsec:hover{background:rgba(255,255,255,.2)}
+.bnrv{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.msc{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:14px;text-align:center;color:#fff}.msc .v{font-size:1.3rem;font-weight:900;color:var(--gold)}.msc .l{font-size:.7rem;opacity:.7;margin-top:2px}
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:36px}
+.plan{background:var(--w);border-radius:20px;padding:32px 26px;border:2px solid var(--g200);transition:var(--tr);position:relative;overflow:hidden}.plan:hover{transform:translateY(-6px);box-shadow:var(--shl)}
+.plan.pop{border-color:var(--g);box-shadow:0 0 0 4px rgba(26,122,74,.1)}.plan.biz{background:linear-gradient(135deg,var(--g900),var(--g800));border-color:var(--gold);color:#fff}
+.pbdg{position:absolute;top:18px;right:-26px;background:var(--g);color:#fff;font-size:.7rem;font-weight:700;padding:4px 32px;transform:rotate(45deg)}
+.pico{font-size:2.2rem;margin-bottom:14px}.pnm{font-size:1.1rem;font-weight:800;margin-bottom:5px}.pds{font-size:.83rem;color:var(--g500);margin-bottom:20px}.plan.biz .pds{color:rgba(255,255,255,.6)}
+.ppr2{margin-bottom:24px}.ppr2 .am{font-size:2.2rem;font-weight:900;color:var(--g)}.plan.biz .ppr2 .am{color:var(--gold)}.ppr2 .pe{font-size:.83rem;color:var(--g400)}.plan.biz .ppr2 .pe{color:rgba(255,255,255,.5)}
+.pfts{margin-bottom:24px}.pft2{display:flex;align-items:center;gap:9px;padding:7px 0;font-size:.85rem;border-bottom:1px solid var(--g100)}.plan.biz .pft2{border-color:rgba(255,255,255,.08)}.pft2:last-child{border-bottom:none}
+.pft2 i{color:var(--g);font-size:.82rem;flex-shrink:0}.plan.biz .pft2 i{color:var(--gold)}.pft2.dis{opacity:.4}.pft2.dis i{color:var(--g400)}
+.plbtn{width:100%;padding:13px;border-radius:14px;font-size:.92rem;font-weight:700;font-family:inherit;transition:var(--tr);cursor:pointer}
+.pbo{background:transparent;border:2px solid var(--g);color:var(--g)}.pbo:hover{background:var(--g);color:#fff}
+.pbs{background:var(--g);color:#fff;border:none}.pbs:hover{background:var(--gd);transform:translateY(-2px)}
+.pbg2{background:var(--gold);color:#fff;border:none}.pbg2:hover{background:var(--goldd);transform:translateY(-2px)}
+.pmths{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:28px}
+.pmth{background:var(--g50);border:2px solid var(--g200);border-radius:14px;padding:14px 24px;display:flex;align-items:center;gap:10px;font-size:.88rem;font-weight:600;color:var(--g700);transition:var(--tr);cursor:pointer}.pmth:hover{border-color:var(--g);color:var(--g);transform:translateY(-2px)}.pmth .pi{font-size:1.4rem}
+.esec{background:linear-gradient(135deg,var(--gd),var(--g));padding:56px 40px;color:#fff}.ein{max-width:1280px;margin:0 auto}
+.estps{display:flex;align-items:center;margin-top:36px;overflow-x:auto}
+.estp{flex:1;min-width:150px;text-align:center;padding:20px 14px;position:relative}
+.estp::after{content:"92";position:absolute;right:-8px;top:50%;transform:translateY(-50%);font-size:1.3rem;color:rgba(255,255,255,.4)}.estp:last-child::after{display:none}
+.esn{width:44px;height:44px;background:rgba(255,255,255,.15);border:2px solid rgba(255,255,255,.3);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem;font-weight:800;margin:0 auto 10px}
+.esi{font-size:1.5rem;margin-bottom:7px}.est{font-size:.85rem;font-weight:700;margin-bottom:3px}.esd{font-size:.73rem;opacity:.75}
+.slgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:18px}
+.slc{background:var(--w);border-radius:14px;padding:22px 14px;text-align:center;box-shadow:0 1px 3px rgba(0,0,0,.08);transition:var(--tr);border:2px solid transparent;cursor:pointer}.slc:hover{border-color:var(--g);transform:translateY(-3px);box-shadow:var(--sh)}
+.slav{width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,var(--g),var(--gl));display:flex;align-items:center;justify-content:center;font-size:1.3rem;color:#fff;font-weight:800;margin:0 auto 10px}
+.sln{font-size:.92rem;font-weight:700;color:var(--g900);margin-bottom:3px}.slt{font-size:.73rem;color:var(--g400);margin-bottom:8px}
+.slr{display:flex;align-items:center;justify-content:center;gap:3px;font-size:.8rem;color:var(--gold);margin-bottom:7px}.slr span{color:var(--g500)}
+.slbs{display:flex;flex-wrap:wrap;gap:3px;justify-content:center}.slb{font-size:.66rem;font-weight:700;padding:2px 7px;border-radius:50px}
+.slbv{background:rgba(26,122,74,.1);color:var(--g)}.slbp{background:rgba(245,166,35,.1);color:var(--goldd)}.slbb{background:rgba(99,102,241,.1);color:#6366f1}
+.lpsec{background:var(--w);padding:36px}.lpin{max-width:1280px;margin:0 auto}
+.lprow{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;margin-top:20px}
+.lp{display:flex;align-items:center;gap:7px;background:var(--g50);border:2px solid var(--g200);border-radius:50px;padding:9px 18px;font-size:.86rem;font-weight:600;transition:var(--tr);cursor:pointer}.lp:hover,.lp.active{border-color:var(--g);color:var(--g);background:rgba(26,122,74,.05)}
+footer{background:var(--g900);color:rgba(255,255,255,.75);padding:56px 40px 0}
+.fgrid{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;gap:36px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.08)}
+.fdesc{font-size:.83rem;line-height:1.7;margin:14px 0 18px}
+.fsocs{display:flex;gap:8px}.fsoc{width:34px;height:34px;background:rgba(255,255,255,.08);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.88rem;color:rgba(255,255,255,.6);transition:var(--tr);cursor:pointer}.fsoc:hover{background:var(--g);color:#fff}
+.fcol h4{font-size:.85rem;font-weight:700;color:#fff;margin-bottom:14px;text-transform:uppercase;letter-spacing:.5px}
+.fls{display:flex;flex-direction:column;gap:7px}.fls a{font-size:.8rem;color:rgba(255,255,255,.55);transition:var(--tr);text-decoration:none}.fls a:hover{color:var(--gl);padding-left:4px}
+.fbot{max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:18px 0;font-size:.78rem;color:rgba(255,255,255,.35)}
+.fbls{display:flex;gap:18px}.fbls a{color:rgba(255,255,255,.35);transition:var(--tr);text-decoration:none}.fbls a:hover{color:rgba(255,255,255,.7)}
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:2000;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:var(--tr)}.modal-overlay.open{opacity:1;pointer-events:all}
+.modal{background:var(--w);border-radius:var(--rl);padding:32px;max-width:440px;width:100%;position:relative;transform:translateY(20px);transition:var(--tr)}.modal-overlay.open .modal{transform:translateY(0)}
+.modal-close{position:absolute;top:14px;right:14px;width:30px;height:30px;border-radius:50%;background:var(--g100);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:.85rem;color:var(--g600);transition:var(--tr);border:none}.modal-close:hover{background:var(--g200)}
+.modal h2{font-size:1.25rem;font-weight:800;color:var(--g900);margin-bottom:5px}.modal p{font-size:.86rem;color:var(--g500);margin-bottom:18px}
+.fg{margin-bottom:14px}.fg label{display:block;font-size:.8rem;font-weight:600;color:var(--g700);margin-bottom:5px}
+.fi{width:100%;border:2px solid var(--g200);border-radius:var(--rsm);padding:10px 13px;font-size:.9rem;font-family:inherit;color:var(--g800);outline:none;transition:var(--tr)}.fi:focus{border-color:var(--g);box-shadow:0 0 0 3px rgba(26,122,74,.1)}
+.btn-full{width:100%;background:var(--g);color:#fff;border-radius:var(--rsm);padding:12px;font-size:.93rem;font-weight:700;font-family:inherit;transition:var(--tr);border:none;cursor:pointer}.btn-full:hover{background:var(--gd);transform:translateY(-1px)}
+.mdiv{text-align:center;font-size:.78rem;color:var(--g400);margin:12px 0;position:relative}.mdiv::before,.mdiv::after{content:"";position:absolute;top:50%;width:42%;height:1px;background:var(--g200)}.mdiv::before{left:0}.mdiv::after{right:0}
+.mlink{text-align:center;font-size:.82rem;color:var(--g500);margin-top:12px}.mlink a{color:var(--g);font-weight:600;text-decoration:none}
+.toast{position:fixed;bottom:80px;right:20px;background:var(--g900);color:#fff;padding:12px 18px;border-radius:var(--r);font-size:.84rem;font-weight:500;z-index:3000;transform:translateX(120%);transition:var(--tr);max-width:300px}.toast.show{transform:translateX(0)}.toast.success{background:var(--g)}.toast.error{background:var(--red)}
+.fab-g{position:fixed;bottom:24px;right:24px;display:flex;flex-direction:column;gap:8px;z-index:999}
+.fab{width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.05rem;box-shadow:var(--shl);transition:var(--tr);cursor:pointer;border:none}.fab:hover{transform:scale(1.1)}
+.fab-m{background:var(--g);color:#fff;width:56px;height:56px;font-size:1.2rem}.fab-c{background:#25d366;color:#fff}.fab-t{background:var(--w);color:var(--g700);border:2px solid var(--g200) !important}
+@media(max-width:1024px){.hin{grid-template-columns:1fr}.hright{display:none}.fgrid{grid-template-columns:1fr 1fr}.plans{grid-template-columns:1fr;max-width:380px;margin:36px auto 0}}
+@media(max-width:768px){.ntop{padding:10px 16px}.ncats{padding:0 16px 8px}.nsearch{display:none}.sec{padding:36px 16px}.sbar{padding:20px 16px}.sbar-in{grid-template-columns:repeat(2,1fr)}.si{border-right:none;border-bottom:1px solid rgba(255,255,255,.1)}.hin{padding:36px 16px}.bnr{margin:0 16px;padding:28px 20px;grid-template-columns:1fr}.bnrv{display:none}.esec{padding:40px 16px}.estps{flex-direction:column}.estp::after{content:"93";right:50%;top:auto;bottom:-12px;transform:translateX(50%)}.fgrid{grid-template-columns:1fr;gap:24px}.fbot{flex-direction:column;gap:10px;text-align:center}.nav-lang-lbl{display:none}}
+</style>
+<style>
+.breadcrumb{background:var(--w);border-bottom:1px solid var(--g200);padding:10px 40px}
+.breadcrumb-in{max-width:1280px;margin:0 auto;display:flex;align-items:center;gap:8px;font-size:.82rem;color:var(--g500)}
+.breadcrumb a{color:var(--g);transition:var(--tr)}.breadcrumb a:hover{color:var(--gd)}
+.breadcrumb .sep{color:var(--g300)}.breadcrumb .cur{color:var(--g800);font-weight:600}
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:2000;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:var(--tr)}.modal-overlay.open{opacity:1;pointer-events:all}
+.modal{background:var(--w);border-radius:var(--rl);padding:32px;max-width:440px;width:100%;position:relative;transform:translateY(20px);transition:var(--tr)}.modal-overlay.open .modal{transform:translateY(0)}
+.modal-close{position:absolute;top:14px;right:14px;width:30px;height:30px;border-radius:50%;background:var(--g100);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:.85rem;color:var(--g600);border:none}
+.modal h2{font-size:1.25rem;font-weight:800;color:var(--g900);margin-bottom:5px}.modal p{font-size:.86rem;color:var(--g500);margin-bottom:18px}
+.fg{margin-bottom:14px}.fg label{display:block;font-size:.8rem;font-weight:600;color:var(--g700);margin-bottom:5px}
+.fi{width:100%;border:2px solid var(--g200);border-radius:var(--rsm);padding:10px 13px;font-size:.9rem;font-family:inherit;color:var(--g800);outline:none;transition:var(--tr)}.fi:focus{border-color:var(--g)}
+.btn-full{width:100%;background:var(--g);color:#fff;border-radius:var(--rsm);padding:12px;font-size:.93rem;font-weight:700;font-family:inherit;border:none;cursor:pointer}
+.mlink{text-align:center;font-size:.82rem;color:var(--g500);margin-top:12px}.mlink a{color:var(--g);font-weight:600;text-decoration:none}
+.toast{position:fixed;bottom:80px;right:20px;background:var(--g900);color:#fff;padding:12px 18px;border-radius:var(--r);font-size:.84rem;font-weight:500;z-index:3000;transform:translateX(120%);transition:var(--tr);max-width:300px}.toast.show{transform:translateX(0)}.toast.success{background:var(--g)}.toast.error{background:var(--red)}
+.fab-g{position:fixed;bottom:24px;right:24px;display:flex;flex-direction:column;gap:8px;z-index:999}
+.fab{width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.05rem;box-shadow:var(--shl);transition:var(--tr);cursor:pointer;border:none}.fab:hover{transform:scale(1.1)}
+.fab-m{background:var(--g);color:#fff;width:56px;height:56px;font-size:1.2rem}.fab-c{background:#25d366;color:#fff}.fab-t{background:var(--w);color:var(--g700);border:2px solid var(--g200) !important}
+.subcat-tabs{display:flex;gap:8px;padding:14px 40px;background:var(--w);border-bottom:1px solid var(--g200);overflow-x:auto}
+.subcat-tabs::-webkit-scrollbar{height:0}
+.subcat-tab{padding:7px 16px;border-radius:50px;font-size:.8rem;font-weight:600;border:2px solid var(--g200);background:transparent;color:var(--g600);cursor:pointer;transition:var(--tr);white-space:nowrap;font-family:inherit}
+.subcat-tab:hover,.subcat-tab.active{background:var(--g);color:#fff;border-color:var(--g)}
+.cat-layout{display:grid;grid-template-columns:240px 1fr;gap:20px;max-width:1280px;margin:0 auto;padding:20px 40px}
+.sidebar{background:var(--w);border-radius:var(--r);padding:18px;box-shadow:0 1px 3px rgba(0,0,0,.08);height:fit-content;position:sticky;top:80px;border:1px solid var(--g200)}
+.sidebar h3{font-size:.88rem;font-weight:800;color:var(--g900);margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid var(--g100)}
+.filter-group{margin-bottom:16px}
+.filter-group label{display:block;font-size:.72rem;font-weight:700;color:var(--g600);margin-bottom:7px;text-transform:uppercase;letter-spacing:.5px}
+.filter-opt{display:flex;align-items:center;gap:7px;padding:4px 0;font-size:.83rem;color:var(--g700);cursor:pointer}
+.filter-opt input{accent-color:var(--g)}
+.filter-range{width:100%;accent-color:var(--g);margin:7px 0}
+.filter-range-vals{display:flex;justify-content:space-between;font-size:.72rem;color:var(--g500)}
+.apply-btn{width:100%;background:var(--g);color:#fff;border-radius:var(--rsm);padding:9px;font-size:.83rem;font-weight:700;font-family:inherit;border:none;cursor:pointer;transition:var(--tr);margin-top:5px}
+.apply-btn:hover{background:var(--gd)}
+.sort-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:8px}
+.sort-bar-left{font-size:.83rem;color:var(--g500)}
+.sort-sel{border:2px solid var(--g200);border-radius:var(--rsm);padding:6px 12px;font-size:.8rem;font-family:inherit;color:var(--g700);outline:none;cursor:pointer}
+.vbtn{width:30px;height:30px;border-radius:var(--rsm);display:flex;align-items:center;justify-content:center;font-size:.8rem;color:var(--g500);background:var(--g100);cursor:pointer;border:none;transition:var(--tr)}
+.vbtn.active,.vbtn:hover{background:var(--g);color:#fff}
+.pagination{display:flex;align-items:center;justify-content:center;gap:5px;padding:24px 0}
+.pag-btn{width:34px;height:34px;border-radius:var(--rsm);display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:600;color:var(--g700);background:var(--w);border:2px solid var(--g200);cursor:pointer;transition:var(--tr)}
+.pag-btn:hover,.pag-btn.active{background:var(--g);color:#fff;border-color:var(--g)}
+.cat-hero{padding:36px 40px;color:#fff}
+.cat-hero-in{max-width:1280px;margin:0 auto;display:flex;align-items:center;gap:18px}
+.cat-hero-icon{font-size:3rem;background:rgba(255,255,255,.15);width:72px;height:72px;border-radius:18px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.cat-hero-title{font-size:1.7rem;font-weight:900;margin-bottom:4px}
+.cat-hero-sub{font-size:.88rem;opacity:.85}
+.cat-hero-stats{display:flex;gap:18px;margin-top:10px}
+.cat-hero-stat .n{font-size:1.2rem;font-weight:900}
+.cat-hero-stat .l{font-size:.7rem;opacity:.75}
+@media(max-width:1024px){.cat-layout{grid-template-columns:1fr}.sidebar{position:static}}
+@media(max-width:768px){.breadcrumb{padding:8px 16px}.subcat-tabs{padding:10px 16px}.cat-layout{padding:12px 16px}.cat-hero{padding:24px 16px}}
+</style>
+</head>
+<body>
+<div class="ann">
+  <strong data-t='{"am":"🎉 አዲስ!","en":"🎉 New!"}'>🎉 አዲስ!</strong>
+  <span data-t='{"am":"Escrow Payment Protection አሁን ይገኛል","en":"Escrow Payment Protection is now available"}'>Escrow Payment Protection አሁን ይገኛል</span>
+  <strong>✅ Verified Seller</strong>
+  <span data-t='{"am":"ለሁሉም Premium አባላት","en":"For all Premium members"}'>ለሁሉም Premium አባላት</span>
+  <strong>📱 Mobile App</strong>
+  <span data-t='{"am":"ቅርቡን ይጠብቁ!","en":"Coming soon!"}'>ቅርቡን ይጠብቁ!</span>
+</div>
+
+<nav class="navbar">
+  <div class="ntop">
+    <a href="index.html" class="logo">
+      <div class="logo-ic">🏪</div>
+      <div><div class="logo-am">መርካቶ</div><div class="logo-en">Merkato Marketplace</div></div>
+    </a>
+    <form class="nsearch" onsubmit="doSearch(event)">
+      <input type="text" id="nsearch-input" data-ph='{"am":"ምን ይፈልጋሉ? ምርት፣ አገልግሎት፣ ሥራ...","en":"What are you looking for?"}' placeholder="ምን ይፈልጋሉ?"/>
+      <select>
+        <option data-t='{"am":"ሁሉም","en":"All"}'>ሁሉም</option>
+        <option data-t='{"am":"አዲስ እቃ","en":"New Items"}'>አዲስ እቃ</option>
+        <option data-t='{"am":"አሮጌ እቃ","en":"Used Items"}'>አሮጌ እቃ</option>
+        <option data-t='{"am":"መኪና","en":"Vehicles"}'>መኪና</option>
+        <option data-t='{"am":"ቤት","en":"Real Estate"}'>ቤት</option>
+        <option data-t='{"am":"ሥራ","en":"Jobs"}'>ሥራ</option>
+      </select>
+      <button type="submit"><i class="fas fa-search"></i></button>
+    </form>
+    <div class="nacts">
+      <button class="nb nb-gh" onclick="openModal('login-modal')"><i class="fas fa-heart"></i></button>
+      <button class="nb nb-gh"><i class="fas fa-bell"></i></button>
+      <button class="nb nb-gh"><i class="fas fa-comment-dots"></i></button>
+      <button class="nb nb-o" onclick="openModal('login-modal')">
+        <i class="fas fa-sign-in-alt"></i>
+        <span data-t='{"am":"ግባ","en":"Login"}'>ግባ</span>
+      </button>
+      <button class="nb nb-s" onclick="openModal('register-modal')">
+        <i class="fas fa-user-plus"></i>
+        <span data-t='{"am":"ተመዝገብ","en":"Register"}'>ተመዝገብ</span>
+      </button>
+      <a href="admin.html" class="nb" style="background:var(--g900);color:#fff;border-radius:50px" title="Admin Panel"><i class="fas fa-shield-alt"></i></a>
+      <a href="post-ad.html" class="nb nb-gd">
+        <i class="fas fa-plus"></i>
+        <span data-t='{"am":"ማስታወቂያ","en":"Post Ad"}'>ማስታወቂያ</span>
+      </a>
+      <div class="nav-lang">
+        <span class="nav-lang-lbl" data-t='{"am":"ቋንቋ:","en":"Lang:"}'>ቋንቋ:</span>
+        <div class="lsw">
+          <button id="btn-am" class="active" data-lang="am" onclick="setLang('am')">🇪🇹 አማርኛ</button>
+          <button id="btn-en" data-lang="en" onclick="setLang('en')">🇬🇧 EN</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ncats">
+    <a href="index.html" class="ncat active"><i class="fas fa-home"></i> <span data-t='{"am":"መነሻ","en":"Home"}'>መነሻ</span></a>
+    <a href="category-electronics.html" class="ncat"><i class="fas fa-mobile-alt"></i> <span data-t='{"am":"ኤሌክትሮኒክስ","en":"Electronics"}'>ኤሌክትሮኒክስ</span></a>
+    <a href="category-vehicles.html" class="ncat"><i class="fas fa-car"></i> <span data-t='{"am":"መኪናዎች","en":"Vehicles"}'>መኪናዎች</span></a>
+    <a href="category-realestate.html" class="ncat"><i class="fas fa-home"></i> <span data-t='{"am":"ሪል እስቴት","en":"Real Estate"}'>ሪል እስቴት</span></a>
+    <a href="category-agriculture.html" class="ncat"><i class="fas fa-seedling"></i> <span data-t='{"am":"ግብርና","en":"Agriculture"}'>ግብርና</span></a>
+    <a href="category-jobs.html" class="ncat"><i class="fas fa-briefcase"></i> <span data-t='{"am":"ሥራ ገበያ","en":"Jobs"}'>ሥራ ገበያ</span></a>
+    <a href="category-services.html" class="ncat"><i class="fas fa-tools"></i> <span data-t='{"am":"አገልግሎቶች","en":"Services"}'>አገልግሎቶች</span></a>
+    <a href="category-hotel.html" class="ncat"><i class="fas fa-hotel"></i> <span data-t='{"am":"ሆቴልና ሬስቶራንት","en":"Hotels &amp; Restaurants"}'>ሆቴልና ሬስቶራንት</span></a>
+    <a href="category-fashion.html" class="ncat"><i class="fas fa-tshirt"></i> <span data-t='{"am":"ልብስ &amp; ፋሽን","en":"Fashion"}'>ልብስ &amp; ፋሽን</span></a>
+    <a href="category-health.html" class="ncat"><i class="fas fa-heartbeat"></i> <span data-t='{"am":"ጤናና ውበት","en":"Health &amp; Beauty"}'>ጤናና ውበት</span></a>
+    <a href="category-construction.html" class="ncat"><i class="fas fa-hard-hat"></i> <span data-t='{"am":"ግንባታ","en":"Construction"}'>ግንባታ</span></a>
+    <a href="categories.html" class="ncat"><i class="fas fa-th"></i> <span data-t='{"am":"ሁሉም ካታጎሪዎች","en":"All Categories"}'>ሁሉም ካታጎሪዎች</span></a>
+    <a href="mobile-app.html" class="ncat" style="background:linear-gradient(135deg,var(--g),var(--gl));color:#fff"><i class="fas fa-mobile-alt"></i> <span data-t='{"am":"📱 Mobile App","en":"📱 Mobile App"}'>📱 Mobile App</span></a>
+  </div>
+</nav><div class="breadcrumb"><div class="breadcrumb-in"><a href="index.html">መነሻ</a><span class="sep"><i class="fas fa-chevron-right"></i></span><span class="cur">ጤናና ውበት / Health &amp; Beauty</span></div></div>
+<div class="cat-hero" style="background:linear-gradient(135deg,#4a8a80,#60a496,#7abeb4)">
+  <div class="cat-hero-in">
+    <div class="cat-hero-icon">💊</div>
+    <div>
+      <h1 class="cat-hero-title" data-t='{"am":"ጤናና ውበት","en":"Health &amp; Beauty"}'>ጤናና ውበት</h1>
+      <p class="cat-hero-sub" data-t='{"am":"210+ ምርቶች ይገኛሉ","en":"210+ products available"}'>210+ ምርቶች ይገኛሉ</p>
+      <div class="cat-hero-stats">
+        <div class="cat-hero-stat"><div class="n">210+</div><div class="l" data-t='{"am":"ምርቶች","en":"Products"}'>ምርቶች</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="subcat-tabs">
+  <button class="subcat-tab active" onclick="filterSubcat('all',this)">ሁሉም / All</button>
+  <button class="subcat-tab" onclick="filterSubcat('💊 ጤ',this)">💊 ጤና / Health</button>
+  <button class="subcat-tab" onclick="filterSubcat('💄 ው',this)">💄 ውበት / Beauty</button>
+  <button class="subcat-tab" onclick="filterSubcat('🏋️ ',this)">🏋️ ስፖርት / Sports</button>
+  <button class="subcat-tab" onclick="filterSubcat('🧴 ቆ',this)">🧴 ቆዳ ጥበቃ / Skincare</button>
+  <button class="subcat-tab" onclick="filterSubcat('💅 ጥ',this)">💅 ጥፍር / Nails</button>
+  <button class="subcat-tab" onclick="filterSubcat('🌿 ተ',this)">🌿 ተፈጥሯዊ / Natural</button>
+
+</div>
+<div class="cat-layout">
+<div class="sidebar">
+  <h3 data-t='{"am":"ፍልተር","en":"Filter"}'>ፍልተር</h3>
+  <div class="filter-group">
+    <label data-t='{"am":"ቦታ","en":"Location"}'>ቦታ</label>
+    <select style="width:100%;border:2px solid var(--g200);border-radius:var(--rsm);padding:7px 10px;font-size:.82rem;font-family:inherit;color:var(--g700);outline:none;cursor:pointer">
+      <option>ሁሉም ቦታ / All</option>
+      <option>አዲስ አበባ / Addis Ababa</option>
+      <option>ድሬዳዋ / Dire Dawa</option>
+      <option>ሐዋሳ / Hawassa</option>
+      <option>ባህር ዳር / Bahir Dar</option>
+      <option>ጎንደር / Gondar</option>
+    </select>
+  </div>
+  <div class="filter-group">
+    <label data-t='{"am":"የዋጋ ክልል","en":"Price Range"}'>የዋጋ ክልል</label>
+    <input type="range" class="filter-range" min="0" max="5000000" value="2500000" oninput="document.getElementById('pv').textContent='ETB '+Number(this.value).toLocaleString()"/>
+    <div class="filter-range-vals"><span>ETB 0</span><span id="pv">ETB 2,500,000</span></div>
+  </div>
+  <div class="filter-group">
+    <label data-t='{"am":"ሁኔታ","en":"Condition"}'>ሁኔታ</label>
+    <div class="filter-opt"><input type="checkbox" checked/> <span data-t='{"am":"አዲስ","en":"New"}'>አዲስ</span></div>
+    <div class="filter-opt"><input type="checkbox" checked/> <span data-t='{"am":"ጥቅም ላይ የዋለ","en":"Used"}'>ጥቅም ላይ የዋለ</span></div>
+  </div>
+  <div class="filter-group">
+    <label data-t='{"am":"ሻጭ ዓይነት","en":"Seller Type"}'>ሻጭ ዓይነት</label>
+    <div class="filter-opt"><input type="checkbox" checked/> ሁሉም / All</div>
+    <div class="filter-opt"><input type="checkbox"/> ✅ Verified</div>
+    <div class="filter-opt"><input type="checkbox"/> 🏢 Business</div>
+  </div>
+  <button class="apply-btn" onclick="showToast('ፍልተር ተተግብሯል ✅','success')" data-t='{"am":"ፍልተር ተግብር","en":"Apply Filter"}'>ፍልተር ተግብር</button>
+</div>
+  <div>
+    <div class="sort-bar">
+  <div class="sort-bar-left"><strong>210+</strong> <span data-t='{"am":"ምርቶች ተገኝተዋል","en":"products found"}'>ምርቶች ተገኝተዋል</span></div>
+  <div style="display:flex;gap:8px;align-items:center">
+    <select class="sort-sel">
+      <option data-t='{"am":"አዲስ ቅደም","en":"Newest First"}'>አዲስ ቅደም</option>
+      <option data-t='{"am":"ዋጋ ዝቅ","en":"Price: Low to High"}'>ዋጋ ዝቅ</option>
+      <option data-t='{"am":"ዋጋ ከፍ","en":"Price: High to Low"}'>ዋጋ ከፍ</option>
+    </select>
+    <div style="display:flex;gap:3px">
+      <button class="vbtn active" onclick="document.querySelector('.pgrid').style.gridTemplateColumns='repeat(auto-fill,minmax(240px,1fr))'"><i class="fas fa-th"></i></button>
+      <button class="vbtn" onclick="document.querySelector('.pgrid').style.gridTemplateColumns='1fr'"><i class="fas fa-list"></i></button>
+    </div>
+  </div>
+</div>
+    <div class="pgrid">
+      <div class="pc" onclick="location.href='product-h1.html'">
+  <div class="pim" style="background:linear-gradient(135deg,#fce4ec,#f8bbd0)">💄</div>
+  <div class="pbg"><span class="bdg bn" data-t='{"am":"አዲስ","en":"New"}'>አዲስ</span></div>
+  <button class="pwh" onclick="event.stopPropagation();toggleWish('h1',this)"><i class="far fa-heart"></i></button>
+  <div class="pbd">
+    <div class="pct" data-t='{"am":"ጤናና ውበት","en":"Health & Beauty"}'>ጤናና ውበት</div>
+    <div class="ptl" data-t='{"am":"MAC Lipstick Collection","en":"MAC Lipstick Collection"}'>MAC Lipstick Collection</div>
+    <div class="ppr"><span class="cu">ETB</span> 1,200 </div>
+    <div class="pmt"><div class="psl"><div class="sav">ሙ</div> ሙሉ ቢውቲ</div><div class="prt"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><span>(67)</span></div></div>
+    <div class="plc"><i class="fas fa-map-marker-alt"></i> <span data-t='{"am":"አዲስ አበባ, ቦሌ","en":"Addis Ababa, Bole"}'>አዲስ አበባ, ቦሌ</span></div>
+  </div>
+  <div class="pft">
+    <button class="bc" onclick="event.stopPropagation();showToast('📞 +251 9XX XXX XXX','success')"><i class="fas fa-phone"></i> <span data-t='{"am":"ያናግሩ","en":"Contact"}'>ያናግሩ</span></button>
+    <button class="bs" onclick="event.stopPropagation();toggleWish('h1',this)"><i class="far fa-heart"></i></button>
+  </div>
+</div><div class="pc" onclick="location.href='product-h2.html'">
+  <div class="pim" style="background:linear-gradient(135deg,#e8f5e9,#c8e6c9)">🧴</div>
+  <div class="pbg"><span class="bdg bh" data-t='{"am":"🔥 ሞቃት","en":"🔥 Hot"}'>🔥 ሞቃት</span></div>
+  <button class="pwh" onclick="event.stopPropagation();toggleWish('h2',this)"><i class="far fa-heart"></i></button>
+  <div class="pbd">
+    <div class="pct" data-t='{"am":"ጤናና ውበት","en":"Health & Beauty"}'>ጤናና ውበት</div>
+    <div class="ptl" data-t='{"am":"Vitamin C Serum — 30ml","en":"Vitamin C Serum — 30ml"}'>Vitamin C Serum — 30ml</div>
+    <div class="ppr"><span class="cu">ETB</span> 850 <span class="op">ETB 1,000</span></div>
+    <div class="pmt"><div class="psl"><div class="sav">ሀ</div> ሀይሉ ፋርማ</div><div class="prt"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><span>(43)</span></div></div>
+    <div class="plc"><i class="fas fa-map-marker-alt"></i> <span data-t='{"am":"አዲስ አበባ","en":"Addis Ababa"}'>አዲስ አበባ</span></div>
+  </div>
+  <div class="pft">
+    <button class="bc" onclick="event.stopPropagation();showToast('📞 +251 9XX XXX XXX','success')"><i class="fas fa-phone"></i> <span data-t='{"am":"ያናግሩ","en":"Contact"}'>ያናግሩ</span></button>
+    <button class="bs" onclick="event.stopPropagation();toggleWish('h2',this)"><i class="far fa-heart"></i></button>
+  </div>
+</div><div class="pc" onclick="location.href='product.html?id=h3'">
+  <div class="pim" style="background:linear-gradient(135deg,#e3f2fd,#bbdefb)">🏋️</div>
+  <div class="pbg"><span class="bdg bv">✅ Verified</span></div>
+  <button class="pwh" onclick="event.stopPropagation();toggleWish('h3',this)"><i class="far fa-heart"></i></button>
+  <div class="pbd">
+    <div class="pct" data-t='{"am":"ጤናና ውበት","en":"Health & Beauty"}'>ጤናና ውበት</div>
+    <div class="ptl" data-t='{"am":"Gym Equipment Set","en":"Gym Equipment Set"}'>Gym Equipment Set</div>
+    <div class="ppr"><span class="cu">ETB</span> 15,000 </div>
+    <div class="pmt"><div class="psl"><div class="sav">ሰ</div> ሰሚ ስፖርት</div><div class="prt"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><span>(12)</span></div></div>
+    <div class="plc"><i class="fas fa-map-marker-alt"></i> <span data-t='{"am":"አዲስ አበባ, ቦሌ","en":"Addis Ababa, Bole"}'>አዲስ አበባ, ቦሌ</span></div>
+  </div>
+  <div class="pft">
+    <button class="bc" onclick="event.stopPropagation();showToast('📞 +251 9XX XXX XXX','success')"><i class="fas fa-phone"></i> <span data-t='{"am":"ያናግሩ","en":"Contact"}'>ያናግሩ</span></button>
+    <button class="bs" onclick="event.stopPropagation();toggleWish('h3',this)"><i class="far fa-heart"></i></button>
+  </div>
+</div><div class="pc" onclick="location.href='product.html?id=h4'">
+  <div class="pim" style="background:linear-gradient(135deg,#f1f8e9,#dcedc8)">🌿</div>
+  <div class="pbg"><span class="bdg bn" data-t='{"am":"አዲስ","en":"New"}'>አዲስ</span></div>
+  <button class="pwh" onclick="event.stopPropagation();toggleWish('h4',this)"><i class="far fa-heart"></i></button>
+  <div class="pbd">
+    <div class="pct" data-t='{"am":"ጤናና ውበት","en":"Health & Beauty"}'>ጤናና ውበት</div>
+    <div class="ptl" data-t='{"am":"Ethiopian Honey — 1kg","en":"Ethiopian Honey — 1kg"}'>Ethiopian Honey — 1kg</div>
+    <div class="ppr"><span class="cu">ETB</span> 450 </div>
+    <div class="pmt"><div class="psl"><div class="sav">ዮ</div> ዮሐንስ ፋርም</div><div class="prt"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><span>(89)</span></div></div>
+    <div class="plc"><i class="fas fa-map-marker-alt"></i> <span data-t='{"am":"ጅማ","en":"Jimma"}'>ጅማ</span></div>
+  </div>
+  <div class="pft">
+    <button class="bc" onclick="event.stopPropagation();showToast('📞 +251 9XX XXX XXX','success')"><i class="fas fa-phone"></i> <span data-t='{"am":"ያናግሩ","en":"Contact"}'>ያናግሩ</span></button>
+    <button class="bs" onclick="event.stopPropagation();toggleWish('h4',this)"><i class="far fa-heart"></i></button>
+  </div>
+</div>
+    </div>
+    <div class="pagination">
+  <div class="pag-btn"><i class="fas fa-chevron-left"></i></div>
+  <div class="pag-btn active">1</div>
+  <div class="pag-btn" onclick="showToast('ገጽ 2','success')">2</div>
+  <div class="pag-btn" onclick="showToast('ገጽ 3','success')">3</div>
+  <div class="pag-btn" onclick="showToast('ቀጣይ','success')"><i class="fas fa-chevron-right"></i></div>
+</div>
+  </div>
+</div>
+<script>
+function filterSubcat(type, btn) {
+  document.querySelectorAll('.subcat-tab').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+  showToast('ፍልተር ✅','success');
+}
+</script><footer>
+  <div class="fgrid">
+    <div>
+      <a href="index.html" class="logo"><div class="logo-ic">🏪</div><div><div class="logo-am" style="color:#fff">መርካቶ</div><div class="logo-en">Merkato Marketplace Ethiopia</div></div></a>
+      <p class="fdesc" data-t='{"am":"&quot;ሁሉንም ገበያ በአንድ ቦታ&quot; — ኢትዮጵያ ውስጥ ግለሰቦች፣ ንግድ ድርጅቶች፣ አምራቾች እና አገልግሎት ሰጪዎችን በአንድ ዘመናዊ ዲጂታል ገበያ መድረክ ላይ ያገናኛል።","en":"&quot;All Markets in One Place&quot; — Connecting individuals, businesses, producers and service providers on one modern digital marketplace in Ethiopia."}'>"ሁሉንም ገበያ በአንድ ቦታ" — ኢትዮጵያ ውስጥ ግለሰቦች፣ ንግድ ድርጅቶች፣ አምራቾች እና አገልግሎት ሰጪዎችን በአንድ ዘመናዊ ዲጂታል ገበያ መድረክ ላይ ያገናኛል።</p>
+      <div class="fsocs">
+        <div class="fsoc"><i class="fab fa-facebook-f"></i></div>
+        <div class="fsoc"><i class="fab fa-telegram-plane"></i></div>
+        <div class="fsoc"><i class="fab fa-tiktok"></i></div>
+        <div class="fsoc"><i class="fab fa-youtube"></i></div>
+        <div class="fsoc"><i class="fab fa-instagram"></i></div>
+      </div>
+    </div>
+    <div class="fcol">
+      <h4 data-t='{"am":"ካታጎሪዎች","en":"Categories"}'>ካታጎሪዎች</h4>
+      <div class="fls">
+        <a href="category-electronics.html">📱 <span data-t='{"am":"ኤሌክትሮኒክስ","en":"Electronics"}'>ኤሌክትሮኒክስ</span></a>
+        <a href="category-vehicles.html">🚗 <span data-t='{"am":"መኪናዎች","en":"Vehicles"}'>መኪናዎች</span></a>
+        <a href="category-realestate.html">🏡 <span data-t='{"am":"ሪል እስቴት","en":"Real Estate"}'>ሪል እስቴት</span></a>
+        <a href="category-agriculture.html">🌾 <span data-t='{"am":"ግብርና","en":"Agriculture"}'>ግብርና</span></a>
+        <a href="category-hotel.html">🏨 <span data-t='{"am":"ሆቴልና ሬስቶራንት","en":"Hotels &amp; Restaurants"}'>ሆቴልና ሬስቶራንት</span></a>
+        <a href="categories.html">📋 <span data-t='{"am":"ሁሉም ካታጎሪዎች","en":"All Categories"}'>ሁሉም ካታጎሪዎች</span></a>
+      </div>
+    </div>
+    <div class="fcol">
+      <h4 data-t='{"am":"አባልነት","en":"Membership"}'>አባልነት</h4>
+      <div class="fls">
+        <a href="#" onclick="openModal('register-modal');return false"><span data-t='{"am":"ነፃ አባልነት","en":"Free Membership"}'>ነፃ አባልነት</span></a>
+        <a href="#" onclick="openModal('register-modal');return false">Premium — 500 ETB</a>
+        <a href="#" onclick="openModal('register-modal');return false">Business — 2,000 ETB</a>
+        <a href="post-ad.html"><span data-t='{"am":"ማስታወቂያ ለጥፍ","en":"Post an Ad"}'>ማስታወቂያ ለጥፍ</span></a>
+        <a href="mobile-app.html">📱 Mobile App</a>
+        <a href="about.html#escrow">Escrow Protection</a>
+      </div>
+    </div>
+    <div class="fcol">
+      <h4 data-t='{"am":"ድጋፍ","en":"Support"}'>ድጋፍ</h4>
+      <div class="fls">
+        <a href="faq.html">FAQ</a>
+        <a href="about.html"><span data-t='{"am":"ስለ እኛ","en":"About Us"}'>ስለ እኛ</span></a>
+        <a href="contact.html"><span data-t='{"am":"ያናግሩን","en":"Contact Us"}'>ያናግሩን</span></a>
+        <a href="fraud-report.html"><span data-t='{"am":"ቅሬታ ማቅረቢያ","en":"File Complaint"}'>ቅሬታ ማቅረቢያ</span></a>
+        <a href="fraud-report.html">Fraud Report</a>
+      </div>
+    </div>
+    <div class="fcol">
+      <h4 data-t='{"am":"ያናግሩን","en":"Contact"}'>ያናግሩን</h4>
+      <div class="fls">
+        <a href="tel:+251911000000"><i class="fas fa-phone"></i> +251 911 000 000</a>
+        <a href="mailto:info@merkato.et"><i class="fas fa-envelope"></i> info@merkato.et</a>
+        <a href="https://t.me/MerkatoET" target="_blank"><i class="fab fa-telegram-plane"></i> @MerkatoET</a>
+        <a href="contact.html"><i class="fas fa-map-marker-alt"></i> <span data-t='{"am":"አዲስ አበባ, ኢትዮጵያ","en":"Addis Ababa, Ethiopia"}'>አዲስ አበባ, ኢትዮጵያ</span></a>
+      </div>
+    </div>
+  </div>
+  <div class="fbot">
+    <div data-t='{"am":"© 2024 መርካቶ የመገበያያ አዳራሽ. ሁሉም መብቶች የተጠበቁ ናቸው።","en":"© 2024 Merkato Marketplace Ethiopia. All rights reserved."}'>© 2024 መርካቶ የመገበያያ አዳራሽ. ሁሉም መብቶች የተጠበቁ ናቸው።</div>
+    <div class="fbls">
+      <a href="privacy.html" data-t='{"am":"የግልነት ፖሊሲ","en":"Privacy Policy"}'>የግልነት ፖሊሲ</a>
+      <a href="terms.html" data-t='{"am":"የአጠቃቀም ሁኔታዎች","en":"Terms of Use"}'>የአጠቃቀም ሁኔታዎች</a>
+      <a href="faq.html">Cookie Policy</a>
+    </div>
+  </div>
+</footer><div class="modal-overlay" id="login-modal"><div class="modal"><button class="modal-close" onclick="closeModal('login-modal')"><i class="fas fa-times"></i></button><h2>ወደ መርካቶ ይግቡ</h2><p>ለመቀጠል ስልክ ቁጥርዎን ያስገቡ</p><div class="fg"><label>ስልክ ቁጥር</label><input class="fi" type="tel" placeholder="+251 9XX XXX XXX"/></div><div class="fg"><label>የይለፍ ቃል</label><input class="fi" type="password" placeholder="••••••••"/></div><button class="btn-full" onclick="showToast('✅ ወደ ስርዓቱ ተገብቷል!','success');closeModal('login-modal')">ግባ</button><p class="mlink">አካውንት የለዎትም? <a href="#" onclick="closeModal('login-modal');openModal('register-modal')">ይመዝገቡ</a></p></div></div>
+<div class="modal-overlay" id="register-modal"><div class="modal"><button class="modal-close" onclick="closeModal('register-modal')"><i class="fas fa-times"></i></button><h2>አዲስ አካውንት ይፍጠሩ</h2><p>ነፃ ይመዝገቡ</p><div class="fg"><label>ሙሉ ስም</label><input class="fi" type="text" placeholder="ሙሉ ስምዎን ያስገቡ"/></div><div class="fg"><label>ስልክ ቁጥር</label><input class="fi" type="tel" placeholder="+251 9XX XXX XXX"/></div><div class="fg"><label>የይለፍ ቃል</label><input class="fi" type="password" placeholder="••••••••"/></div><button class="btn-full" onclick="showToast('✅ አካውንት ተፈጥሯል!','success');closeModal('register-modal')">ተመዝገብ</button><p class="mlink">አካውንት አለዎት? <a href="#" onclick="closeModal('register-modal');openModal('login-modal')">ይግቡ</a></p></div></div>
+<div class="fab-g"><button class="fab fab-c" onclick="showToast('📱 Telegram: @MerkatoET','success')"><i class="fab fa-telegram-plane"></i></button><a href="post-ad.html" class="fab fab-m"><i class="fas fa-plus"></i></a><button class="fab fab-t" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fas fa-arrow-up"></i></button></div>
+<div id="toast" class="toast"></div>
+<script>
+// ===== LANGUAGE SYSTEM =====
+var LANG = localStorage.getItem('merkato_lang') || 'am';
+
+function applyLang() {
+  document.querySelectorAll('[data-t]').forEach(function(el) {
+    try { var d = JSON.parse(el.getAttribute('data-t')); if (d[LANG] !== undefined) el.innerHTML = d[LANG]; } catch(e) {}
+  });
+  document.querySelectorAll('[data-ph]').forEach(function(el) {
+    try { var d = JSON.parse(el.getAttribute('data-ph')); if (d[LANG] !== undefined) el.placeholder = d[LANG]; } catch(e) {}
+  });
+  var bam = document.getElementById('btn-am');
+  var ben = document.getElementById('btn-en');
+  if (bam) bam.classList.toggle('active', LANG === 'am');
+  if (ben) ben.classList.toggle('active', LANG === 'en');
+  var pam = document.getElementById('pill-am');
+  var pen = document.getElementById('pill-en');
+  if (pam) pam.classList.toggle('active', LANG === 'am');
+  if (pen) pen.classList.toggle('active', LANG === 'en');
+  document.documentElement.lang = LANG;
+  localStorage.setItem('merkato_lang', LANG);
+}
+
+function setLang(l) {
+  LANG = l;
+  applyLang();
+}
+
+// ===== WISHLIST =====
+var wish = JSON.parse(localStorage.getItem('merkato_wish') || '[]');
+function toggleWish(id, btn) {
+  var idx = wish.indexOf(id);
+  if (idx >= 0) { wish.splice(idx, 1); }
+  else {
+    wish.push(id);
+    showToast((LANG === 'am' ? '❤️ ወደ ዝርዝር ተጨምሯል!' : '❤️ Added to Wishlist!'), 'success');
+  }
+  localStorage.setItem('merkato_wish', JSON.stringify(wish));
+  document.querySelectorAll('[onclick*="toggleWish(\''+id+'\')"] i, .pwh[onclick*="toggleWish(\''+id+'\')"] i').forEach(function(i) {
+    i.className = wish.includes(id) ? 'fas fa-heart' : 'far fa-heart';
+  });
+}
+
+// ===== TOAST =====
+function showToast(msg, type) {
+  var el = document.getElementById('toast');
+  if (!el) return;
+  el.textContent = msg;
+  el.className = 'toast ' + (type || '');
+  setTimeout(function() { el.classList.add('show'); }, 10);
+  setTimeout(function() { el.classList.remove('show'); }, 3000);
+}
+
+// ===== MODALS =====
+function openModal(id) { var m = document.getElementById(id); if (m) m.classList.add('open'); }
+function closeModal(id) { var m = document.getElementById(id); if (m) m.classList.remove('open'); }
+document.addEventListener('click', function(e) {
+  if (e.target.classList.contains('modal-overlay')) e.target.classList.remove('open');
+});
+
+// ===== SEARCH =====
+function doSearch(e) {
+  e.preventDefault();
+  var inp = document.getElementById('hero-search') || document.getElementById('nsearch-input');
+  var q = inp ? inp.value.trim() : '';
+  if (q) window.location.href = 'search.html?q=' + encodeURIComponent(q);
+  else showToast((LANG === 'am' ? 'ምን ይፈልጋሉ?' : 'What are you looking for?'), '');
+}
+
+// ===== SCROLL REVEAL =====
+function initReveal() {
+  if (!window.IntersectionObserver) return;
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) { e.target.style.opacity='1'; e.target.style.transform='translateY(0)'; }
+    });
+  }, {threshold: 0.08});
+  document.querySelectorAll('.cc,.pc,.plan,.slc').forEach(function(el) {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(18px)';
+    el.style.transition = 'opacity 0.45s ease, transform 0.45s ease';
+    obs.observe(el);
+  });
+}
+
+
+// ===== PLAN SWITCHER =====
+function openEscrowModal() { openModal("escrow-modal"); }
+
+function switchPlan(btn, targetId) {
+  var container = btn.closest('.plan');
+  // Update button styles
+  container.querySelectorAll('.plan-tab').forEach(function(b) {
+    b.style.background = 'transparent';
+    b.style.color = container.classList.contains('biz') ? 'rgba(255,255,255,.7)' : 'var(--g600)';
+    b.style.borderColor = container.classList.contains('biz') ? 'rgba(255,255,255,.3)' : 'var(--g200)';
+  });
+  btn.style.background = container.classList.contains('biz') ? 'var(--gold)' : 'var(--g)';
+  btn.style.color = '#fff';
+  btn.style.borderColor = container.classList.contains('biz') ? 'var(--gold)' : 'var(--g)';
+  // Show/hide price blocks
+  container.querySelectorAll('.plan-price-block').forEach(function(b) {
+    b.style.display = 'none';
+  });
+  var target = document.getElementById(targetId);
+  if (target) target.style.display = 'block';
+}
+
+// ===== INIT =====
+document.addEventListener('DOMContentLoaded', function() {
+  applyLang();
+  initReveal();
+});
+</script>
+</body>
+</html>
+<script>
+var wish = JSON.parse(localStorage.getItem('merkato_wish') || '[]');
+function toggleWish(id, btn) {
+  var idx = wish.indexOf(id);
+  if (idx >= 0) wish.splice(idx,1); else { wish.push(id); showToast('❤️ ወደ ዝርዝር ተጨምሯል!','success'); }
+  localStorage.setItem('merkato_wish', JSON.stringify(wish));
+  var i = btn.querySelector('i');
+  if (i) i.className = wish.includes(id) ? 'fas fa-heart' : 'far fa-heart';
+}
+</script>
